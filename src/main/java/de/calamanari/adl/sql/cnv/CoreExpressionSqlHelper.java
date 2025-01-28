@@ -105,16 +105,17 @@ public class CoreExpressionSqlHelper {
      * 
      * @param rootExpression
      * @param timeout if null we will use the default: {@link TimeOut#createDefaultTimeOut(String)}
+     * @param dataBinding physical table binding
      * @param processContext (hints will be added to global flags)
      */
-    public CoreExpressionSqlHelper(CoreExpression rootExpression, TimeOut timeout, SqlConversionProcessContext processContext) {
+    public CoreExpressionSqlHelper(CoreExpression rootExpression, TimeOut timeout, DataBinding dataBinding, ProcessContext processContext) {
         this.rootExpression = rootExpression;
         this.tree = EncodedExpressionTree.fromCoreExpression(rootExpression);
         this.rootNode = tree.getRootNode();
         this.timeout = timeout == null ? TimeOut.createDefaultTimeOut(ImplicationResolver.class.getSimpleName()) : timeout;
-        this.stats = CoreExpressionStats.from(rootExpression, processContext);
+        this.stats = CoreExpressionStats.from(rootExpression, dataBinding, processContext);
         processContext.getGlobalFlags().addAll(this.stats.hints());
-        this.dataBinding = processContext.getDataBinding();
+        this.dataBinding = dataBinding;
         this.processContext = new MinimalProcessContext(processContext.getGlobalVariables(), processContext.getGlobalFlags());
     }
 

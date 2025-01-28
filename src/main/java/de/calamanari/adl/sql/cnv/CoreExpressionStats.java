@@ -39,6 +39,7 @@ import java.util.function.Predicate;
 
 import de.calamanari.adl.CombinedExpressionType;
 import de.calamanari.adl.Flag;
+import de.calamanari.adl.ProcessContext;
 import de.calamanari.adl.irl.CombinedExpression;
 import de.calamanari.adl.irl.CoreExpression;
 import de.calamanari.adl.irl.MatchExpression;
@@ -96,12 +97,12 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
      * Analyzes the given root expression considering the configured data binding and returns statistics to be used during expression to SQL conversion.
      * 
      * @param expression
+     * @param dataBinding
      * @param ctx
      * @return statistics
      */
-    public static CoreExpressionStats from(CoreExpression expression, SqlConversionProcessContext ctx) {
+    public static CoreExpressionStats from(CoreExpression expression, DataBinding dataBinding, ProcessContext ctx) {
 
-        DataBinding dataBinding = ctx.getDataBinding();
         Set<String> multiRowArgNames = new TreeSet<>();
         Set<String> argNamesInPositiveValueMatches = new TreeSet<>();
         Set<String> argNamesInNegativeValueMatches = new TreeSet<>();
@@ -116,25 +117,26 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
         collectArgNamesInValueMatches(expression, (e -> e.operator() == MatchOperator.IS_UNKNOWN), false, argNamesInPositiveIsUnknownMatches);
         collectArgNamesInValueMatches(expression, (e -> e.operator() == MatchOperator.IS_UNKNOWN), true, argNamesInNegativeIsUnknownMatches);
 
-        collectArgNamesMultiRowOrSparse(expression, ctx, multiRowArgNames);
-        collectArgNamesWithIsNullMultiRowSensitivity(ctx, argNamesInPositiveIsUnknownMatches, argNamesWithMultiRowSensitivity);
-        collectArgNamesWithMultiRowSensitivity(expression, ctx, multiRowArgNames, argNamesWithMultiRowSensitivity);
+        collectArgNamesMultiRowOrSparse(expression, dataBinding, ctx, multiRowArgNames);
+        collectArgNamesWithIsNullMultiRowSensitivity(dataBinding, ctx, argNamesInPositiveIsUnknownMatches, argNamesWithMultiRowSensitivity);
+        collectArgNamesWithMultiRowSensitivity(expression, dataBinding, ctx, multiRowArgNames, argNamesWithMultiRowSensitivity);
 
         CoreExpressionStats stats = new CoreExpressionStats(new TreeSet<>(), argNamesWithMultiRowSensitivity, multiRowArgNames, argNamesWithMultiRowSensitivity,
                 argNamesInPositiveValueMatches, argNamesInNegativeValueMatches, argNamesInPositiveIsUnknownMatches, argNamesInNegativeIsUnknownMatches,
-                requiredTables, checkSeparateBaseTableRequired(expression, ctx));
-        computeHints(expression, ctx, stats);
+                requiredTables, checkSeparateBaseTableRequired(expression, dataBinding, ctx));
+        computeHints(expression, dataBinding, ctx, stats);
 
         return stats;
     }
 
     /**
      * @param stats
+     * @param dataBinding
      * @param ctx
      * @return if there is only one table involved in the query
      */
-    private static boolean checkSingleTableQuery(CoreExpressionStats stats, SqlConversionProcessContext ctx) {
-        String primaryTableName = ctx.getDataBinding().dataTableConfig().primaryTable();
+    private static boolean checkSingleTableQuery(CoreExpressionStats stats, DataBinding dataBinding, ProcessContext ctx) {
+        String primaryTableName = dataBinding.dataTableConfig().primaryTable();
         return stats.requiredTables.size() == 1 && (!ConversionDirective.ENFORCE_PRIMARY_TABLE.check(ctx.getGlobalFlags())
                 || (primaryTableName != null && stats.requiredTables.contains(primaryTableName)));
     }
@@ -145,11 +147,11 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
      * Hints are updated on the given stats instance.
      * 
      * @param expression
+     * @param dataBinding
      * @param ctx
      * @param stats
      */
-    private static void computeHints(CoreExpression expression, SqlConversionProcessContext ctx, CoreExpressionStats stats) {
-        DataBinding dataBinding = ctx.getDataBinding();
+    private static void computeHints(CoreExpression expression, DataBinding dataBinding, ProcessContext ctx, CoreExpressionStats stats) {
         if (expression.collectExpressions(e -> e instanceof MatchExpression match && match.operator() == MatchOperator.IS_UNKNOWN).isEmpty()) {
             stats.hints.add(NO_IS_UNKNOWN);
         }
@@ -161,7 +163,7 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
         if (expression.allArgNames().size() == 1) {
             stats.hints.add(SINGLE_ATTRIBUTE);
         }
-        if (checkSingleTableQuery(stats, ctx)) {
+        if (checkSingleTableQuery(stats, dataBinding, ctx)) {
             stats.hints.add(SINGLE_TABLE);
             TableMetaInfo tmi = dataBinding.dataTableConfig().lookupTableMetaInfoByTableName(stats.requiredTables.iterator().next());
             if (dataBinding.dataTableConfig().numberOfTables() == 1 || tmi.tableNature().containsAllIds()) {
@@ -173,11 +175,11 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
             stats.hints.add(NO_MULTI_ROW_REFERENCE_MATCH);
         }
 
-        if (checkSimpleSingleTableCondition(expression, ctx, stats)) {
+        if (checkSimpleSingleTableCondition(expression, dataBinding, ctx, stats)) {
             stats.hints.add(SIMPLE_CONDITION);
         }
 
-        computeComplexHints(ctx, stats);
+        computeComplexHints(dataBinding, ctx, stats);
 
     }
 
@@ -205,10 +207,11 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
     /**
      * Bases on the data collected so far this method adds some complex findings as hints
      * 
+     * @param dataBinding
      * @param ctx
      * @param stats
      */
-    private static void computeComplexHints(SqlConversionProcessContext ctx, CoreExpressionStats stats) {
+    private static void computeComplexHints(DataBinding dataBinding, ProcessContext ctx, CoreExpressionStats stats) {
 
         if (stats.argNamesWithMultiRowSensitivity.isEmpty()) {
             stats.hints.add(NO_MULTI_ROW_SENSITIVITY);
@@ -220,23 +223,23 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
                 || (SINGLE_TABLE.check(stats.hints) && ((NO_AND.check(stats.hints) && ConversionHint.NO_MULTI_ROW_REFERENCE_MATCH.check(stats.hints)) || NO_MULTI_ROW_SENSITIVITY.check(stats.hints)) && NO_IS_UNKNOWN.check(stats.hints))
                 ) {
         // @formatter:on
-            addSimpleJoinTypeHint(ctx, stats);
+            addSimpleJoinTypeHint(dataBinding, ctx, stats);
         }
         else {
 
-            addComplexJoinTypeHint(ctx, stats);
+            addComplexJoinTypeHint(dataBinding, ctx, stats);
         }
     }
 
     /**
      * Adds a LEFT OUTER JOIN if no inner join is possible due to other conditions
      * 
+     * @param dataBinding
      * @param ctx
      * @param stats
      */
-    private static void addComplexJoinTypeHint(SqlConversionProcessContext ctx, CoreExpressionStats stats) {
+    private static void addComplexJoinTypeHint(DataBinding dataBinding, ProcessContext ctx, CoreExpressionStats stats) {
 
-        DataBinding dataBinding = ctx.getDataBinding();
         // when we query a negation color != red, and the underlying table can have multiple entries for the id then
         // we must ensure that none of the matching records has red color
         boolean multiJoinConflictPossible = stats.argNamesInNegativeValueMatches.stream()
@@ -255,8 +258,7 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
      * @param ctx
      * @param stats
      */
-    private static void addSimpleJoinTypeHint(SqlConversionProcessContext ctx, CoreExpressionStats stats) {
-        DataBinding dataBinding = ctx.getDataBinding();
+    private static void addSimpleJoinTypeHint(DataBinding dataBinding, ProcessContext ctx, CoreExpressionStats stats) {
         TableMetaInfo tmi = dataBinding.dataTableConfig().lookupTableMetaInfoByTableName(stats.requiredTables().iterator().next());
         if (stats.argNamesInNegativeValueMatches.isEmpty() || tmi.tableNature().isIdUnique()) {
             stats.hints.add(NO_JOINS_REQUIRED);
@@ -283,23 +285,24 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
 
     /**
      * @param expression
+     * @param dataBinding
      * @param ctx
      * @param stats
      * @return true id this condition can be written in a simplistic way (SELECT-FROM-WHERE) on a single table
      */
-    private static boolean checkSimpleSingleTableCondition(CoreExpression expression, SqlConversionProcessContext ctx, CoreExpressionStats stats) {
+    private static boolean checkSimpleSingleTableCondition(CoreExpression expression, DataBinding dataBinding, ProcessContext ctx, CoreExpressionStats stats) {
         if (!SINGLE_TABLE.check(stats.hints)) {
             return false;
         }
         if (stats.hasAnyMultiRowSensitiveArgs()) {
-            TableMetaInfo tmi = ctx.getDataBinding().dataTableConfig().lookupTableMetaInfoByTableName(stats.requiredTables.iterator().next());
-            return (ctx.getDataBinding().dataTableConfig().numberOfTables() == 1 || tmi.tableNature().containsAllIds()
+            TableMetaInfo tmi = dataBinding.dataTableConfig().lookupTableMetaInfoByTableName(stats.requiredTables.iterator().next());
+            return (dataBinding.dataTableConfig().numberOfTables() == 1 || tmi.tableNature().containsAllIds()
                     || stats.argNamesInPositiveIsUnknownMatches.isEmpty()) && ConversionHint.NO_AND.check(stats.hints)
                     && ConversionHint.NO_MULTI_ROW_REFERENCE_MATCH.check(stats.hints)
                     && (stats.argNamesInNegativeValueMatches.isEmpty() || tmi.tableNature().isIdUnique());
         }
         else {
-            return checkSimpleSingleTableCondition(expression, ctx);
+            return checkSimpleSingleTableCondition(expression, dataBinding, ctx);
         }
     }
 
@@ -363,15 +366,16 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
      * <i>contains all IDs</i>. Otherwise we would have to query a different base table and create a join to this table not to miss any records.
      * 
      * @param expression
+     * @param dataBinding
      * @param ctx
      * @return true if this is a simple single table condition
      */
-    private static boolean checkSimpleSingleTableCondition(CoreExpression expression, SqlConversionProcessContext ctx) {
+    private static boolean checkSimpleSingleTableCondition(CoreExpression expression, DataBinding dataBinding, ProcessContext ctx) {
         switch (expression) {
         case MatchExpression match:
-            return checkSimpleConditionStraightMatch(match, ctx);
+            return checkSimpleConditionStraightMatch(match, dataBinding, ctx);
         case CombinedExpression cmb:
-            return cmb.members().stream().allMatch(e -> checkSimpleSingleTableCondition(e, ctx));
+            return cmb.members().stream().allMatch(e -> checkSimpleSingleTableCondition(e, dataBinding, ctx));
         default:
             return true;
         }
@@ -383,11 +387,11 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
      * This is the case if none of the conditions requires any individual join.
      * 
      * @param match
+     * @param dataBinding
      * @param ctx
      * @return true if the match is simple, e.g. <code>COLOR='red'</code>, <code>COLOR IS NULL</code>
      */
-    private static boolean checkSimpleConditionStraightMatch(MatchExpression match, SqlConversionProcessContext ctx) {
-        DataBinding dataBinding = ctx.getDataBinding();
+    private static boolean checkSimpleConditionStraightMatch(MatchExpression match, DataBinding dataBinding, ProcessContext ctx) {
         return (match.operator() != MatchOperator.IS_UNKNOWN
                 || dataBinding.dataTableConfig().lookupTableMetaInfo(match.argName(), ctx).tableNature().containsAllIds()
                 || dataBinding.dataTableConfig().numberOfTables() == 1);
@@ -397,12 +401,12 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
      * Collects any argument that is explicitly marked multi-row or implicitly multi-row because the table is marked sparse.
      * 
      * @param expression
+     * @param dataBinding
      * @param ctx
      * @param multiRowArgNames for result collection
      */
-    private static void collectArgNamesMultiRowOrSparse(CoreExpression expression, SqlConversionProcessContext ctx, Set<String> multiRowArgNames) {
+    private static void collectArgNamesMultiRowOrSparse(CoreExpression expression, DataBinding dataBinding, ProcessContext ctx, Set<String> multiRowArgNames) {
 
-        DataBinding dataBinding = ctx.getDataBinding();
         // @formatter:off
         expression.allArgNames().stream()
                     .filter(argName -> (dataBinding.dataTableConfig().lookupColumn(argName, ctx).isMultiRow()
@@ -466,15 +470,15 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
      * related column is a regular column among others. However, if the column has filters assigned then the likelihood is high that it can happen that <i>the
      * null is not present</i>. Thus, for safety reasons we mark this argName as multi-row-sensitive.
      * 
+     * @param dataBinding
      * @param ctx
      * @param argNamesInPositiveIsUnknownMatches
      * @param multiRowSensitiveArgNames
      */
-    private static void collectArgNamesWithIsNullMultiRowSensitivity(SqlConversionProcessContext ctx, Set<String> argNamesInPositiveIsUnknownMatches,
-            Set<String> multiRowSensitiveArgNames) {
+    private static void collectArgNamesWithIsNullMultiRowSensitivity(DataBinding dataBinding, ProcessContext ctx,
+            Set<String> argNamesInPositiveIsUnknownMatches, Set<String> multiRowSensitiveArgNames) {
         for (String argName : argNamesInPositiveIsUnknownMatches) {
-            if (!multiRowSensitiveArgNames.contains(argName)
-                    && !ctx.getDataBinding().dataTableConfig().lookupAssignment(argName, ctx).column().filters().isEmpty()) {
+            if (!multiRowSensitiveArgNames.contains(argName) && !dataBinding.dataTableConfig().lookupAssignment(argName, ctx).column().filters().isEmpty()) {
                 multiRowSensitiveArgNames.add(argName);
             }
         }
@@ -490,19 +494,20 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
      * marked as well.
      * 
      * @param expression
+     * @param dataBinding
      * @param ctx
      * @param multiRowArgNames argNames known/marked in advance as multi-row
      * @param multiRowSensitiveArgNames to collect the results
      */
-    private static void collectArgNamesWithMultiRowSensitivity(CoreExpression expression, SqlConversionProcessContext ctx, Set<String> multiRowArgNames,
-            Set<String> multiRowSensitiveArgNames) {
+    private static void collectArgNamesWithMultiRowSensitivity(CoreExpression expression, DataBinding dataBinding, ProcessContext ctx,
+            Set<String> multiRowArgNames, Set<String> multiRowSensitiveArgNames) {
         int sizeBefore = 0;
 
         // iterative approach to consider transitivity
         do {
             sizeBefore = multiRowSensitiveArgNames.size();
             collectArgNamesWithDirectMultiRowSensitivity(expression, multiRowArgNames, multiRowSensitiveArgNames);
-            collectArgNamesMultiRowSensitive(expression, ctx, multiRowArgNames, multiRowSensitiveArgNames);
+            collectArgNamesMultiRowSensitive(expression, dataBinding, ctx, multiRowArgNames, multiRowSensitiveArgNames);
         } while (multiRowSensitiveArgNames.size() > sizeBefore);
     }
 
@@ -510,11 +515,12 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
      * Performs a single run, multiple may be required due to transitivity
      * 
      * @param expression
+     * @param dataBinding
      * @param ctx
      * @param multiRowArgNames
      * @param multiRowSensitiveArgNames
      */
-    private static void collectArgNamesMultiRowSensitive(CoreExpression expression, SqlConversionProcessContext ctx, Set<String> multiRowArgNames,
+    private static void collectArgNamesMultiRowSensitive(CoreExpression expression, DataBinding dataBinding, ProcessContext ctx, Set<String> multiRowArgNames,
             Set<String> multiRowSensitiveArgNames) {
 
         List<ParentAwareExpressionNode> candidates = ParentAwareExpressionNode.collectLeafNodes(expression);
@@ -529,7 +535,7 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
                         && rightNode.expression() instanceof SimpleExpression right 
                         && !right.equals(left)
                         && !isAlreadyMarkedMultiRowSensitive(left, right, multiRowSensitiveArgNames)
-                        && isTableOverlap(left, right, ctx)) {
+                        && isTableOverlap(left, right, dataBinding, ctx)) {
                     // @formatter:on
 
                     collectArgNamesMultiRowDueToImplication(left, right, multiRowArgNames, multiRowSensitiveArgNames);
@@ -569,11 +575,11 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
      * 
      * @param left
      * @param right
+     * @param dataBinding
      * @param ctx
      * @return true if left and right operate on the same table
      */
-    private static boolean isTableOverlap(SimpleExpression left, SimpleExpression right, SqlConversionProcessContext ctx) {
-        DataBinding dataBinding = ctx.getDataBinding();
+    private static boolean isTableOverlap(SimpleExpression left, SimpleExpression right, DataBinding dataBinding, ProcessContext ctx) {
         String tableLeft = dataBinding.dataTableConfig().lookupTableMetaInfo(left.argName(), ctx).tableName();
         String tableRight = dataBinding.dataTableConfig().lookupTableMetaInfo(right.argName(), ctx).tableName();
         String referencedTableLeft = left.referencedArgName() == null ? null
@@ -658,11 +664,11 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
      * audience that are not present in the UNION of these tables, so they could be overlooked.
      * 
      * @param expression
+     * @param dataBinding
      * @param ctx
      * @return true if an extra table is required to cover all IDs and the query cannot be based on a union of all related tables
      */
-    private static boolean checkSeparateBaseTableRequired(CoreExpression expression, SqlConversionProcessContext ctx) {
-        DataBinding dataBinding = ctx.getDataBinding();
+    private static boolean checkSeparateBaseTableRequired(CoreExpression expression, DataBinding dataBinding, ProcessContext ctx) {
         return dataBinding.dataTableConfig().numberOfTables() > 1
                 && expression.allArgNames().stream().map(argName -> dataBinding.dataTableConfig().lookupTableMetaInfo(argName, ctx))
                         .noneMatch(info -> info.tableNature().containsAllIds())

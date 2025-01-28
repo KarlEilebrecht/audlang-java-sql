@@ -58,7 +58,7 @@ class CoreExpressionSqlHelperTest {
         SqlConversionProcessContext ctx = new ResettableScpContext(new DataBinding(DummyDataTableConfig.getInstance(), DefaultSqlContainsPolicy.SQL92),
                 new HashMap<>(), new HashSet<>());
 
-        CoreExpressionSqlHelper helper = new CoreExpressionSqlHelper(expression, null, ctx);
+        CoreExpressionSqlHelper helper = new CoreExpressionSqlHelper(expression, null, ctx.getDataBinding(), ctx);
 
         assertFalse(CoreExpressionSqlHelper.isSubNested(expression));
 
@@ -99,7 +99,7 @@ class CoreExpressionSqlHelperTest {
         SqlConversionProcessContext ctx = new ResettableScpContext(new DataBinding(DummyDataTableConfig.getInstance(), DefaultSqlContainsPolicy.SQL92),
                 new HashMap<>(), new HashSet<>());
 
-        CoreExpressionSqlHelper helper = new CoreExpressionSqlHelper(expression, null, ctx);
+        CoreExpressionSqlHelper helper = new CoreExpressionSqlHelper(expression, null, ctx.getDataBinding(), ctx);
 
         List<CoreExpression> candidates = Arrays.asList(parseCoreExpression("color any of (red, green)"), parseCoreExpression("country any of (USA, Germany)"),
                 parseCoreExpression("color any of (green, blue)"), parseCoreExpression("country any of (Germany, UK)"), parseCoreExpression("color = black"),

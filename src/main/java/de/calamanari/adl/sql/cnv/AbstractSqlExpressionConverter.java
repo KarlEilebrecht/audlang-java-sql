@@ -464,7 +464,7 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
      * @return new helper instance, a {@link CoreExpressionSqlHelper} initialized with the root expression by default
      */
     protected CoreExpressionSqlHelper createCoreExpressionSqlHelper(CoreExpression rootExpression) {
-        return new CoreExpressionSqlHelper(rootExpression, TimeOut.createDefaultTimeOut(this.getClass().getSimpleName()), getProcessContext());
+        return new CoreExpressionSqlHelper(rootExpression, TimeOut.createDefaultTimeOut(this.getClass().getSimpleName()), dataBinding(), getProcessContext());
     }
 
     /**
