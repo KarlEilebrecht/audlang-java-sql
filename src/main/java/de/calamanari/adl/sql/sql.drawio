@@ -1,0 +1,300 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.17" pages="4">
+  <diagram name="Types and Parameters" id="B6yHBA0yNes8BWCViT4E">
+    <mxGraphModel dx="737" dy="516" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3NF6qjgnj08wNpHQOnpI-2" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;AdlType&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="18" y="30" width="191" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3NF6qjgnj08wNpHQOnpI-20" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;enum&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;DefaultAdlSqlType&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="19" y="380" width="190" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="3NF6qjgnj08wNpHQOnpI-21" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.774;entryY=0.969;entryDx=0;entryDy=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryPerimeter=0;" parent="1" edge="1" target="3NF6qjgnj08wNpHQOnpI-22" source="VzG3GhmJKx8q3InaAPFt-4">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="160" y="380" as="sourcePoint" />
+            <mxPoint x="310" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3NF6qjgnj08wNpHQOnpI-22" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;AdlSqlType&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="19" y="200" width="191" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3NF6qjgnj08wNpHQOnpI-23" value="" style="endArrow=block;endFill=0;endSize=12;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="3NF6qjgnj08wNpHQOnpI-22" target="3NF6qjgnj08wNpHQOnpI-2" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="629" y="285" as="sourcePoint" />
+            <mxPoint x="120" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-8" value="extends" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="3NF6qjgnj08wNpHQOnpI-23">
+          <mxGeometry x="-0.4984" relative="1" as="geometry">
+            <mxPoint x="-24" y="-5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-2" value="&lt;span style=&quot;font-size: 10px;&quot;&gt;AdlSqlType represents the available native data types. To create an extendable type system this is an interface.&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;Dynamic type decoration allows to quickly create custom types by decorating an existing type with adjusted behavior (formatting and type casting).&lt;/span&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=13;labelBackgroundColor=none;fillColor=#FFFFCC;gradientColor=none;align=left;" vertex="1" parent="1">
+          <mxGeometry x="370" y="240" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-3" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;dashed=1;exitX=-0.001;exitY=0.203;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="VzG3GhmJKx8q3InaAPFt-2" target="3NF6qjgnj08wNpHQOnpI-22">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="525" y="426" as="sourcePoint" />
+            <mxPoint x="469" y="430" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="310" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-4" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;class&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;AdlSqlTypeDecorator&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="120" y="310" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-5" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;endArrow=open;endFill=0;strokeWidth=2;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="VzG3GhmJKx8q3InaAPFt-4" target="3NF6qjgnj08wNpHQOnpI-22">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" y="280" as="sourcePoint" />
+            <mxPoint x="490" y="240" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="262" y="230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-6" value="delegate" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="VzG3GhmJKx8q3InaAPFt-5">
+          <mxGeometry x="-0.3978" relative="1" as="geometry">
+            <mxPoint x="-32" y="30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.843;entryY=0.005;entryDx=0;entryDy=0;endArrow=none;endFill=0;dashed=1;exitX=0;exitY=0.653;exitDx=0;exitDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="VzG3GhmJKx8q3InaAPFt-2" target="VzG3GhmJKx8q3InaAPFt-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="320" y="255" as="sourcePoint" />
+            <mxPoint x="220" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-9" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="3NF6qjgnj08wNpHQOnpI-20" target="3NF6qjgnj08wNpHQOnpI-22">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="178" y="320" as="sourcePoint" />
+            <mxPoint x="177" y="249" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-12" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;endArrow=none;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="VzG3GhmJKx8q3InaAPFt-10" target="3NF6qjgnj08wNpHQOnpI-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-10" value="&lt;span style=&quot;font-size: 10px;&quot;&gt;A comprehensive set of JDBC types for easy mapping of native types to ADL-types&lt;/span&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=13;labelBackgroundColor=none;fillColor=#FFFFCC;gradientColor=none;align=left;" vertex="1" parent="1">
+          <mxGeometry x="310" y="390" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-14" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;QueryParameter&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ id() : String&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ apply(PreparedStatement)&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ applyUnsafe(StringBuilder sb)&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ value() : Serializable&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ adlSqlType(): DefaultAdlSqlType&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="19" y="490" width="191" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-15" value="&lt;span style=&quot;font-size: 10px;&quot;&gt;To avoid SQL-injection vulnerabilities, the query generation process fully relies on &lt;b&gt;prepared statements&lt;/b&gt;.&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;For easier debugging or in case there is no JDBC-driver available any query parameter can also be applied to a string template.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;Each parameter carries a readily prepared value to be included in a statement. The type of the internal value is called &lt;b&gt;transfer type&lt;/b&gt;&amp;nbsp;(between parameter creation and application). The only requirement to this type is that it must be &lt;b&gt;serializable&lt;/b&gt;.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;&lt;b&gt;DefaultQueryParameter&lt;/b&gt; is a default implementation suitable for many use cases.&lt;/span&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=13;labelBackgroundColor=none;fillColor=#FFFFCC;gradientColor=none;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="310" y="510" width="360" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-16" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="VzG3GhmJKx8q3InaAPFt-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="530" as="sourcePoint" />
+            <mxPoint x="210" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-17" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;record&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;DefaultQueryParameter&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="19" y="670" width="191" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-18" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="VzG3GhmJKx8q3InaAPFt-17" target="VzG3GhmJKx8q3InaAPFt-14">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="77" y="390" as="sourcePoint" />
+            <mxPoint x="77" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VzG3GhmJKx8q3InaAPFt-23" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="VzG3GhmJKx8q3InaAPFt-15" target="VzG3GhmJKx8q3InaAPFt-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="310" y="605" as="sourcePoint" />
+            <mxPoint x="220" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDahRD0NgZOyH85qTdH9-1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;enum&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;DefaultSqlFormatter&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="310" y="110" width="190" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="EDahRD0NgZOyH85qTdH9-2" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ArgValueFormatter&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="310" y="30" width="191" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="EDahRD0NgZOyH85qTdH9-3" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="EDahRD0NgZOyH85qTdH9-1" target="EDahRD0NgZOyH85qTdH9-2">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="178" y="320" as="sourcePoint" />
+            <mxPoint x="177" y="249" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDahRD0NgZOyH85qTdH9-6" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;dashed=1;" edge="1" parent="1" source="EDahRD0NgZOyH85qTdH9-4" target="EDahRD0NgZOyH85qTdH9-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EDahRD0NgZOyH85qTdH9-4" value="&lt;span style=&quot;font-size: 10px;&quot;&gt;Set of formatters for the default SQL-types.&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;When using PreparedStatements these formatters are skipped. They are for producing readable debug SQL-scripts.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;Via decoration formatters can be adjusted to meet native DB-requirements.&lt;/span&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=13;labelBackgroundColor=none;fillColor=#FFFFCC;gradientColor=none;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="540" y="50" width="130" height="150" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="x_Kza-SuOTrE1SJIn9SX" name="Parameter Creator and Applicator">
+    <mxGraphModel dx="737" dy="516" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="MIOLRvL_NecoNbi9XYqo-1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;QueryParameter&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ id() : String&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ apply(PreparedStatement)&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ applyUnsafe(StringBuilder sb)&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="260" y="50" width="191" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="MIOLRvL_NecoNbi9XYqo-3" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;dashed=1;endArrow=openThin;endFill=0;" edge="1" parent="1" source="MIOLRvL_NecoNbi9XYqo-2" target="MIOLRvL_NecoNbi9XYqo-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MIOLRvL_NecoNbi9XYqo-4" value="&amp;lt;&amp;lt;produces&amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="MIOLRvL_NecoNbi9XYqo-3">
+          <mxGeometry x="0.0156" y="1" relative="1" as="geometry">
+            <mxPoint x="-44" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MIOLRvL_NecoNbi9XYqo-2" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;QueryParameterCreator&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ createParameter(...) : QueryParameter&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="50" y="230" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="MIOLRvL_NecoNbi9XYqo-5" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;QueryParameterApplicator&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ apply(PreparedStatement, QueryParameter)&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ applyUnsafe(StringBuilder sb, QueryParameter)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="370" y="230" width="280" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ckZwHOcWUMg5kmXSaNj4-1" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;dashed=1;endArrow=openThin;endFill=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="MIOLRvL_NecoNbi9XYqo-5" target="MIOLRvL_NecoNbi9XYqo-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="223" y="240" as="sourcePoint" />
+            <mxPoint x="318" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ckZwHOcWUMg5kmXSaNj4-2" value="&amp;lt;&amp;lt;applies&amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ckZwHOcWUMg5kmXSaNj4-1">
+          <mxGeometry x="0.0156" y="1" relative="1" as="geometry">
+            <mxPoint x="48" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0qeALjtvva6mWQWMnZqH-1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;class&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;DefaultQueryParameterCreator&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="50" y="380" width="230" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="9kdbn6EF4n3llMZGYcnC-1" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="0qeALjtvva6mWQWMnZqH-1" target="MIOLRvL_NecoNbi9XYqo-2">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="67" y="380" as="sourcePoint" />
+            <mxPoint x="67" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9kdbn6EF4n3llMZGYcnC-2" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;class&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;DefaultQueryParameterApplicator&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="370" y="380" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="9kdbn6EF4n3llMZGYcnC-3" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="9kdbn6EF4n3llMZGYcnC-2">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="509.76" y="380" as="sourcePoint" />
+            <mxPoint x="509.76" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9y1AJoY2CtdxsoXdOeCZ-1" value="&lt;span style=&quot;font-size: 10px;&quot;&gt;The creation of parameters occur throughout the query generation process, and the order is not always in sync with the final script structure.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 10px; background-color: initial;&quot;&gt;Thus the creation of a parameter and its application to the final script are &lt;/span&gt;&lt;b style=&quot;font-size: 10px; background-color: initial;&quot;&gt;temporarily decoupled&lt;/b&gt;&lt;span style=&quot;font-size: 10px; background-color: initial;&quot;&gt;.&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;Creator and Applicator don&#39;t have any direct dependency but a strong relationship regarding the parameters being transferred between them. Custom types may require changes to creator, applicator or both, especially when introducing a custom transfer type.&lt;/span&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=13;labelBackgroundColor=none;fillColor=#FFFFCC;gradientColor=none;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="50" y="490" width="600" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="b90fduYLuyM12BCiU1hl" name="Query Template">
+    <mxGraphModel dx="885" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="m3eZe2TsLJa4BU7yAmKE-1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;QueryParameter&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="90" y="60" width="191" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="m3eZe2TsLJa4BU7yAmKE-2" value="" style="endArrow=diamondThin;endFill=0;endSize=24;html=1;rounded=0;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startArrow=open;startFill=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="m3eZe2TsLJa4BU7yAmKE-1" target="P41EKG27X_TSdS8ak9Q--1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="420" y="460" as="sourcePoint" />
+            <mxPoint x="185" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3eZe2TsLJa4BU7yAmKE-3" value="orderedParameters" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="m3eZe2TsLJa4BU7yAmKE-2">
+          <mxGeometry x="0.2886" y="-3" relative="1" as="geometry">
+            <mxPoint x="58" y="-5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3eZe2TsLJa4BU7yAmKE-4" value="*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="m3eZe2TsLJa4BU7yAmKE-2">
+          <mxGeometry x="-0.8314" relative="1" as="geometry">
+            <mxPoint x="-14" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9ovojzfolf14HmZB8hPD-2" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="9ovojzfolf14HmZB8hPD-1" target="P41EKG27X_TSdS8ak9Q--1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9ovojzfolf14HmZB8hPD-1" value="&lt;span style=&quot;font-size: 10px;&quot;&gt;A QueryTemplateWithParameters is a script (qmTemplate) for a PreparedStatement where each parameter is represented by a question mark.&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;The template knows the parameters in order of appearance, so they can be applied correctly when setting up a PreparedStatement.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;There is also included a list with the exact positions of the question marks, so they can be replaced with formatted values (for debugging, or in case there is no JDBC-driver available).&lt;/span&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=13;labelBackgroundColor=none;fillColor=#FFFFCC;gradientColor=none;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="350" y="160" width="270" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="P41EKG27X_TSdS8ak9Q--1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;record&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;QueryTemplateWithParameters&lt;/b&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ qmTemplate : String&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ qmPositions : List&amp;lt;Integer&amp;gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ apply(PreparedStatement)&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ applyUnsafe(StringBuilder)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="90" y="220" width="190" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="ghDfkuzM7oT6vlfFxHrg" name="Parameter Collection">
+    <mxGraphModel dx="885" dy="619" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="CnBv8r-z8xxs7eIVJ4Ra-1" value="" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=30;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="330" y="170" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="CnBv8r-z8xxs7eIVJ4Ra-2" value="" style="shape=offPageConnector;whiteSpace=wrap;html=1;rotation=-90;size=0.15;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="210" y="110" width="80" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-1" value="Build main query conditions&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="155" y="195" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-2" value="Build&lt;div&gt;Selections&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="195" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-3" value="" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=30;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="440" y="170" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-4" value="Build Joins" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="478" y="195" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-5" value="" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=30;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="550" y="170" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-6" value="Prepare&lt;div&gt;Statement&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="580" y="195" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-7" value="" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=30;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="660" y="170" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-8" value="Apply&lt;div&gt;Parameters&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="690" y="195" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-11" value="" style="shape=singleArrow;direction=south;whiteSpace=wrap;html=1;arrowWidth=0.4238095238095241;arrowSize=0.23571428571428613;fillColor=#b8b2b2;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="176" y="50" width="60" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-13" value="Expression" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;rotation=-90;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="160" y="79" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-14" value="" style="shape=singleArrow;direction=south;whiteSpace=wrap;html=1;arrowWidth=0.4238095238095241;arrowSize=0.23571428571428613;fillColor=#b8b2b2;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="250" y="50" width="60" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-15" value="DataBinding" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;rotation=-90;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="235" y="78" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-16" value="" style="shape=singleArrow;direction=south;whiteSpace=wrap;html=1;arrowWidth=0.32380952380953354;arrowSize=0.2028571428571422;fillColor=#b8b2b2;strokeColor=none;rotation=-180;" vertex="1" parent="1">
+          <mxGeometry x="700" y="260" width="35" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-17" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#b8b2b2;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="240" y="300" width="480" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-18" value="" style="shape=singleArrow;direction=south;whiteSpace=wrap;html=1;arrowWidth=0.30612244897959046;arrowSize=0.4193548387096756;fillColor=#b8b2b2;strokeColor=none;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="227.5" y="260" width="35" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-20" value="" style="shape=singleArrow;direction=south;whiteSpace=wrap;html=1;arrowWidth=0.30612244897959046;arrowSize=0.4193548387096756;fillColor=#b8b2b2;strokeColor=none;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="260" width="35" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-21" value="" style="shape=singleArrow;direction=south;whiteSpace=wrap;html=1;arrowWidth=0.30612244897959046;arrowSize=0.4193548387096756;fillColor=#b8b2b2;strokeColor=none;rotation=0;" vertex="1" parent="1">
+          <mxGeometry x="487.5" y="260" width="35" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-23" value="Collect Query Parameters" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="380" y="310" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-24" value="" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=30;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="770" y="170" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="88fcjvAl9bjT-7IUq75g-25" value="Execute&lt;div&gt;Statement&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="800" y="195" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="L-jlX7FHs50Xo8GS3oBe-1" value="&lt;span style=&quot;font-size: 10px;&quot;&gt;During the whole process query parameters may be created. Parts of the final SQL-script may be created out-of-order or even vanish due to late decisions. Thus, there is no absolute parameter position in the SQL-script until the script is complete. To address this problem, every parameter has a unique ID, represented by a placeholder &lt;b&gt;${ID}&lt;/b&gt; until the final SQL-structure is complete. During the preparation of the statement these placeholders get replaced by &#39;?&#39; to conform to JDBC-conventions.&lt;/span&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=13;labelBackgroundColor=none;fillColor=#FFFFCC;gradientColor=none;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="348.75" y="60" width="551.25" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

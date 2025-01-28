@@ -1,0 +1,46 @@
+# This workflow will build and deploy an existing release (tag) of a Java-project with Maven
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow requires the release tag as parameter.
+
+
+name: Deploy to Maven Central CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      releaseTag:
+        description: "Release tag to be deployed."
+        required: true
+        default: "vA.B.C"
+
+jobs:
+
+  deploy-central:
+
+    permissions:
+      contents: write
+      pages: write
+      packages: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ inputs.releaseTag }}
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: maven
+        
+# TODO: sign artifact
+
+    - name: Deploy artifacts with Maven
+      run: mvn -s $GITHUB_WORKSPACE/.github/workflows/maven-settings.xml -P mavenCentral -B deploy -DskipTests
+      env:
+        # TODO: credentials for maven central
+        USER_NAME: ${{ secrets.PAT_RO_USER }}
+        ACCESS_TOKEN: ${{ secrets.PAT_RO_TOKEN }}
