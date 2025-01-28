@@ -22,17 +22,21 @@ package de.calamanari.adl.sql.cnv;
 import static de.calamanari.adl.irl.biceps.MemberUtils.EMPTY_MEMBERS;
 import static de.calamanari.adl.sql.cnv.ConversionHint.SIMPLE_CONDITION;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import de.calamanari.adl.CombinedExpressionType;
+import de.calamanari.adl.Flag;
+import de.calamanari.adl.ProcessContext;
 import de.calamanari.adl.TimeOut;
 import de.calamanari.adl.cnv.tps.AdlType;
 import de.calamanari.adl.irl.CombinedExpression;
@@ -82,9 +86,14 @@ public class CoreExpressionSqlHelper {
     protected final CoreExpressionStats stats;
 
     /**
-     * Data binding, variables, flags
+     * Data binding (from context)
      */
-    protected final SqlConversionProcessContext processContext;
+    protected final DataBinding dataBinding;
+
+    /**
+     * Reference to variables and flags
+     */
+    protected final ProcessContext processContext;
 
     /**
      * A comparator that <i>ascendingly</i> orders expressions first after {@link #complexityOf(CoreExpression)}
@@ -105,8 +114,8 @@ public class CoreExpressionSqlHelper {
         this.timeout = timeout == null ? TimeOut.createDefaultTimeOut(ImplicationResolver.class.getSimpleName()) : timeout;
         this.stats = CoreExpressionStats.from(rootExpression, processContext);
         processContext.getGlobalFlags().addAll(this.stats.hints());
-        this.processContext = processContext;
-
+        this.dataBinding = processContext.getDataBinding();
+        this.processContext = new MinimalProcessContext(processContext.getGlobalVariables(), processContext.getGlobalFlags());
     }
 
     /**
@@ -297,8 +306,8 @@ public class CoreExpressionSqlHelper {
      * @return true if there is alignment required
      */
     private boolean isDateAlignmentRequired(SimpleExpression candidate) {
-        AdlType type = processContext.getDataBinding().dataTableConfig().typeOf(candidate.argName());
-        AdlSqlType columnType = processContext.getDataBinding().dataTableConfig().lookupColumn(candidate.argName(), processContext).columnType();
+        AdlType type = dataBinding.dataTableConfig().typeOf(candidate.argName());
+        AdlSqlType columnType = dataBinding.dataTableConfig().lookupColumn(candidate.argName(), processContext).columnType();
         return MatchCondition.shouldAlignDate(type, columnType, processContext);
     }
 
@@ -560,8 +569,8 @@ public class CoreExpressionSqlHelper {
      * @return true if the argument can be queried with IS NULL for a base query
      */
     public boolean isNullQueryingAllowed(String argName) {
-        return !stats.isMultiRowSensitive(argName) && (processContext.getDataBinding().dataTableConfig().numberOfTables() == 1
-                || processContext.getDataBinding().dataTableConfig().lookupTableMetaInfo(argName, processContext).tableNature().containsAllIds());
+        return !stats.isMultiRowSensitive(argName) && (dataBinding.dataTableConfig().numberOfTables() == 1
+                || dataBinding.dataTableConfig().lookupTableMetaInfo(argName, processContext).tableNature().containsAllIds());
     }
 
     /**
@@ -838,12 +847,30 @@ public class CoreExpressionSqlHelper {
      * @return true if either the left table or the right table (in case of a reference match) is the primary table
      */
     public boolean isPrimaryTableInvolved(SimpleExpression expression) {
-        DataBinding dataBinding = processContext.getDataBinding();
         String primaryTableName = dataBinding.dataTableConfig().primaryTable();
         return (primaryTableName != null
                 && (dataBinding.dataTableConfig().lookupTableMetaInfo(expression.argName(), processContext).tableName().equals(primaryTableName)
                         || (expression.referencedArgName() != null && dataBinding.dataTableConfig()
                                 .lookupTableMetaInfo(expression.referencedArgName(), processContext).tableName().equals(primaryTableName))));
+    }
+
+    /**
+     * This avoids that the helper holds a reference to the context while the context knows the helper.
+     * 
+     * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>
+     */
+    protected static record MinimalProcessContext(Map<String, Serializable> globalVariables, Set<Flag> globalFlags) implements ProcessContext {
+
+        @Override
+        public Map<String, Serializable> getGlobalVariables() {
+            return this.globalVariables;
+        }
+
+        @Override
+        public Set<Flag> getGlobalFlags() {
+            return this.globalFlags;
+        }
+
     }
 
 }

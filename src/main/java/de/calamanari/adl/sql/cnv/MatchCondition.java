@@ -30,6 +30,7 @@ import java.util.function.Predicate;
 import de.calamanari.adl.AudlangMessage;
 import de.calamanari.adl.CommonErrors;
 import de.calamanari.adl.ConversionException;
+import de.calamanari.adl.ProcessContext;
 import de.calamanari.adl.cnv.TemplateParameterUtils;
 import de.calamanari.adl.cnv.tps.AdlDateUtils;
 import de.calamanari.adl.cnv.tps.AdlType;
@@ -252,7 +253,7 @@ public record MatchCondition(MatchOperator operator, boolean isNegation, String 
      * @param ctx
      * @return true if the date needs alignment
      */
-    public static boolean shouldAlignDate(AdlType type, AdlSqlType columnType, SqlConversionProcessContext ctx) {
+    public static boolean shouldAlignDate(AdlType type, AdlSqlType columnType, ProcessContext ctx) {
         return (type.getBaseType() == DefaultAdlType.DATE
                 && (columnType.getBaseType() == DefaultAdlSqlType.SQL_BIGINT || columnType.getBaseType() == DefaultAdlSqlType.SQL_INTEGER
                         || columnType.getBaseType() == DefaultAdlSqlType.SQL_TIMESTAMP)
