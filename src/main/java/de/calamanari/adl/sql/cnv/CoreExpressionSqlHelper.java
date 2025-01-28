@@ -113,8 +113,12 @@ public class CoreExpressionSqlHelper {
         this.tree = EncodedExpressionTree.fromCoreExpression(rootExpression);
         this.rootNode = tree.getRootNode();
         this.timeout = timeout == null ? TimeOut.createDefaultTimeOut(ImplicationResolver.class.getSimpleName()) : timeout;
-        this.stats = CoreExpressionStats.from(rootExpression, dataBinding, processContext);
-        processContext.getGlobalFlags().addAll(this.stats.hints());
+        CoreExpressionStats expressionStats = CoreExpressionStats.from(rootExpression, dataBinding, processContext);
+
+        // add all hints as global flags for easier access
+        processContext.getGlobalFlags().addAll(expressionStats.hints());
+
+        this.stats = expressionStats;
         this.dataBinding = dataBinding;
         this.processContext = new MinimalProcessContext(processContext.getGlobalVariables(), processContext.getGlobalFlags());
     }
