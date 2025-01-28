@@ -3,7 +3,7 @@
 	<groupId>de.calamanari.adl</groupId>
 	<artifactId>audlang-java-sql</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>Audlang Java SQL</name>
 	<description>Audlang converters to generate SQL</description>
 
@@ -17,7 +17,7 @@
 		<developerConnection>
 			scm:git:https://github.com/KarlEilebrecht/audlang-java-sql.git</developerConnection>
 		<url>https://github.com/KarlEilebrecht/audlang-java-sql</url>
-		<tag>v1.0.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 
