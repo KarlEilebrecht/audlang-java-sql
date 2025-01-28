@@ -223,7 +223,7 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
                 || (SINGLE_TABLE.check(stats.hints) && ((NO_AND.check(stats.hints) && ConversionHint.NO_MULTI_ROW_REFERENCE_MATCH.check(stats.hints)) || NO_MULTI_ROW_SENSITIVITY.check(stats.hints)) && NO_IS_UNKNOWN.check(stats.hints))
                 ) {
         // @formatter:on
-            addSimpleJoinTypeHint(dataBinding, ctx, stats);
+            addSimpleJoinTypeHint(dataBinding, stats);
         }
         else {
 
@@ -255,10 +255,9 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
     /**
      * Decides whether we need joins at all and otherwise advises to use LEFT OUTER JOIN
      * 
-     * @param ctx
      * @param stats
      */
-    private static void addSimpleJoinTypeHint(DataBinding dataBinding, ProcessContext ctx, CoreExpressionStats stats) {
+    private static void addSimpleJoinTypeHint(DataBinding dataBinding, CoreExpressionStats stats) {
         TableMetaInfo tmi = dataBinding.dataTableConfig().lookupTableMetaInfoByTableName(stats.requiredTables().iterator().next());
         if (stats.argNamesInNegativeValueMatches.isEmpty() || tmi.tableNature().isIdUnique()) {
             stats.hints.add(NO_JOINS_REQUIRED);
