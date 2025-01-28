@@ -9,6 +9,4 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
-  ignore:
-    # ignore Maven APIs/SPIs
-    - dependency-name: org.apache.maven:*
+
