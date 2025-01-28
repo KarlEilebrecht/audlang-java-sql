@@ -118,11 +118,6 @@ public interface SqlConversionProcessContext extends ProcessContext {
     FormatStyle getStyle();
 
     /**
-     * @return configured augmentation listener
-     */
-    SqlAugmentationListener getAugmentationListener();
-
-    /**
      * @return WHERE-clause builder of the converter
      */
     StringBuilder getWhereClause();

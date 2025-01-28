@@ -300,7 +300,9 @@ public class ResettableScpContext implements SqlConversionProcessContext {
         this.style = style;
     }
 
-    @Override
+    /**
+     * @return the configured augmentation listener or {@link SqlAugmentationListener#none()}
+     */
     public SqlAugmentationListener getAugmentationListener() {
         return augmentationListener;
     }

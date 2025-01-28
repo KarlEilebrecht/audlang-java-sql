@@ -174,7 +174,7 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
      * @return augmentation listener of this instance or {@link SqlAugmentationListener#none()} if not installed, not null
      */
     public SqlAugmentationListener getAugmentationListener() {
-        return getProcessContext().getAugmentationListener();
+        return ((ResettableScpContext) getProcessContext()).getAugmentationListener();
     }
 
     /**
@@ -380,7 +380,7 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
      * @return the augmentation listener of this converter or {@link SqlAugmentationListener#none()} if not installed, never null
      */
     protected final SqlAugmentationListener augmentationListener() {
-        return getProcessContext().getAugmentationListener();
+        return getAugmentationListener();
     }
 
     /**
