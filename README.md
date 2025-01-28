@@ -34,6 +34,8 @@ Karl Eilebrecht, January 2025
  * [Package documentation](./src/main/java/de/calamanari/adl/sql/README.md)
  
 ----
-... badges
+<img align="right" src="https://sonarcloud.io/api/project_badges/measure?project=KarlEilebrecht_audlang-java-sql&metric=alert_status" />
+
+[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=KarlEilebrecht_audlang-java-sql)
 
 
