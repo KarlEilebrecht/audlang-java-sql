@@ -6,6 +6,7 @@
 	<version>1.0.1-SNAPSHOT</version>
 	<name>Audlang Java SQL</name>
 	<description>Audlang converters to generate SQL</description>
+    <url>https://github.com/KarlEilebrecht/audlang-java-sql</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
