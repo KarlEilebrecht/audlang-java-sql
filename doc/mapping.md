@@ -382,19 +382,17 @@ MultiTableConfig BASE_AND_FACTS
 This simplifies the query a lot:
 
 ```sql
-SELECT DISTINCT bq__start.ID
-FROM T_BASE bq__start
-INNER JOIN T_BASE
-    ON T_BASE.ID = bq__start.ID
+SELECT DISTINCT T_BASE.ID
+FROM T_BASE
 LEFT OUTER JOIN T_FACTS
-    ON T_FACTS.UID = bq__start.ID
+    ON T_FACTS.UID = T_BASE.ID
     AND ( ( ( T_FACTS.F_VALUE_FLG = FALSE AND T_FACTS.F_KEY = 'hasPet' AND T_FACTS.F_TYPE = 'flag' ) )
         OR ( T_FACTS.PROVIDER IS NOT NULL )
     )
 WHERE ( ( ( T_FACTS.F_VALUE_FLG = FALSE AND T_FACTS.F_KEY = 'hasPet' AND T_FACTS.F_TYPE = 'flag' ) )
         OR ( T_FACTS.PROVIDER = T_BASE.PROVIDER )
         )
-ORDER BY bq__start.ID
+ORDER BY T_BASE.ID
 ```
 
 See also **[:point_right:About the nature of tables and columns](table-column-nature.md)**.
