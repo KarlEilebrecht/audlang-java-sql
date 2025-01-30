@@ -1,6 +1,6 @@
 # Audlang Java SQL
 
-This project provides an SQL-converter implementation for the **[Audience Definition Language Specification (Audlang)](https://github.com/KarlEilebrecht/audlang-spec/blob/main/doc/AudienceDefinitionLanguageSpecification.md#audience-definition-language-specification)** based
+This repository is part of project [Audlang](https://github.com/users/KarlEilebrecht/projects/1/views/1?pane=info) and provides an SQL-converter implementation for the **[Audience Definition Language Specification (Audlang)](https://github.com/KarlEilebrecht/audlang-spec/blob/main/doc/AudienceDefinitionLanguageSpecification.md#audience-definition-language-specification)** based
 on the [Audlang Java Core Project](https://github.com/KarlEilebrecht/audlang-java-core). Latest build artifacts can be found on [Maven Central](https://central.sonatype.com/namespace/de.calamanari.adl).
 
 ```xml
