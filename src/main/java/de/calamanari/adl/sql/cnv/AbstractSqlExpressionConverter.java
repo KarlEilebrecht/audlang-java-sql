@@ -1387,7 +1387,7 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
                 followUp = true;
             }
 
-            sb.append(prefix + condition.column().columnName());
+            sb.append(prefix).append(condition.column().columnName());
 
             if (condition.operator() == MatchOperator.IS_UNKNOWN) {
                 space(sb);
