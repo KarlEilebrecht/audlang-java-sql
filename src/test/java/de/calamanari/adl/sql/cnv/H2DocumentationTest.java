@@ -316,6 +316,13 @@ class H2DocumentationTest {
         assertQueryResult(list(19012, 19013, 19016, 19017, 19018, 19019, 19020, 19021), binding(BASE_TABLE_P, POSDATA_TABLE),
                 "NOT (pos.country=@home-country AND pos.date > 2024-04-01)");
 
+        assertQueryResult(list(19011, 19015), "pos.quantity > @pos.unitPrice AND pos.date > 2024-04-01");
+
+        assertQueryResult(list(19012, 19013, 19014, 19016, 19017, 19018, 19019, 19020, 19021), "NOT (pos.quantity > @pos.unitPrice AND pos.date > 2024-04-01)");
+
+        // 19016, 19018, 19019, 19020, 19021 don't have POS-data
+        assertQueryResult(list(19012, 19013, 19014, 19017), "STRICT NOT (pos.quantity > @pos.unitPrice AND pos.date > 2024-04-01)");
+
     }
 
     @Test
