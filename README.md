@@ -7,7 +7,7 @@ on the [Audlang Java Core Project](https://github.com/KarlEilebrecht/audlang-jav
 		<dependency>
 			<groupId>de.calamanari.adl</groupId>
 			<artifactId>audlang-java-sql</artifactId>
-			<version>1.0.1</version>
+			<version>1.0.2</version>
 		</dependency>
 ```
 
