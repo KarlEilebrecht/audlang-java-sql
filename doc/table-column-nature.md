@@ -23,5 +23,11 @@ The [TableNature](../src/main/java/de/calamanari/adl/sql/config/TableNature.java
  * **Multi-row**: See [Multi-row and sparse data](./multi-row-concept.md).
  * **Column filters**: Every data column can carry additional conditions in the form of [FilterColumns](../src/main/java/de/calamanari/adl/sql/config/FilterColumn.java). Whenever a query involves this column, the column filters narrow the scope. Column filter conditions are meant for scenarios where the data of multiple attributes must be mapped to the same data column (e.g., key-value).
 
+## NOT always translates to NOT ANY
 
+This rule applies to every field assignment no matter if it is marked *multi-row* or not. This is sometimes inconvenient for the user, but it is an **essential requirement**.
+
+Given a condition `color = red` Audlang requires the two sets defined by `color=red` and `color != red` to be **disjoint**.
+
+Would we allow testing a negative condition on a particular *row* rather than *any*, the sets above could *overlap*. Let's assume the column `color` sits on a table *layout* and for the individual `4711` exist two layout-rows, one with `color=red` and the other with `color=blue`. Testing on row level would mean that the query `color=red` returns `4711` but also `NOT color=red`. This is not only a cosmetic issue, it potentially compromises the whole expression logic behind the scenes.
 
