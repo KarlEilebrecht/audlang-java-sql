@@ -139,6 +139,10 @@ class DefaultQueryParameterCreatorTest {
 
         assertEquals("TIMESTAMP '2024-12-13 17:39:12'", param.toString());
 
+        param = creator.createParameter("p", argMetaInfo, "10000000000", MatchOperator.EQUALS, DefaultAdlSqlType.SQL_TIMESTAMP);
+
+        assertEquals("TIMESTAMP '1970-04-26 17:46:40'", param.toString());
+
         for (AdlSqlType adlSqlType : STRING_TYPES) {
             param = creator.createParameter("p", argMetaInfo, "2024-12-13", MatchOperator.EQUALS, adlSqlType);
 

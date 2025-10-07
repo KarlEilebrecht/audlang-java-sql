@@ -47,6 +47,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Field;
@@ -63,6 +64,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.calamanari.adl.DeepCopyUtils;
+import de.calamanari.adl.cnv.tps.AdlFormattingException;
 import de.calamanari.adl.cnv.tps.AdlType;
 import de.calamanari.adl.cnv.tps.ArgMetaInfo;
 import de.calamanari.adl.cnv.tps.ArgValueFormatter;
@@ -538,6 +540,16 @@ class DefaultAdlSqlTypeTest {
         assertEquals(baseType.supportsContains(), customType.supportsContains());
         assertEquals(baseType.supportsLessThanGreaterThan(), customType.supportsLessThanGreaterThan());
         assertEquals(baseType.getJavaSqlType(), customType.getJavaSqlType());
+
+    }
+
+    @Test
+    void testPlainTimestamp() {
+
+        assertEquals("DATE '2025-06-09'", DefaultAdlSqlType.SQL_DATE.getFormatter().format("x", "2025-06-09", MatchOperator.EQUALS));
+
+        assertEquals("TIMESTAMP '2025-06-09 13:13:13'", DefaultSqlFormatter.SQL_TIMESTAMP_DEFAULT.format("x", "2025-06-09 13:13:13", MatchOperator.EQUALS));
+        assertThrows(AdlFormattingException.class, () -> DefaultSqlFormatter.SQL_TIMESTAMP_DEFAULT.format("x", "10000000000", MatchOperator.EQUALS));
 
     }
 
