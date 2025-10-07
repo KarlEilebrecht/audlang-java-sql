@@ -684,6 +684,7 @@ class SingleTableConfigTest {
         assertEquals("d7", config.lookupAssignment("foo.s", ctx).column().columnName());
         assertEquals(1, config.lookupAssignment("foo.s", ctx).column().filters().size());
         assertEquals("foo", globalVariables.get("argName.local"));
+        assertEquals(false, config.contains(".int"));
 
     }
 
@@ -719,6 +720,100 @@ class SingleTableConfigTest {
 
         assertThrows(LookupException.class, () -> config.contains(".int"));
         assertThrows(LookupException.class, () -> config.lookupAssignment(".int", ctx));
+
+    }
+
+    @Test
+    void testBuilderConfigErrorFromAutoMappingFunction() {
+
+        final AutoMappingPolicy policy = new AutoMappingPolicy() {
+
+            @Override
+            public ArgColumnAssignment map(String argName, ProcessContext ctx) {
+                throw new ConfigException("Some specific exception");
+            }
+
+            @Override
+            public boolean isApplicable(String argName) {
+                return true;
+            }
+        };
+
+        // @formatter:off
+        
+        SingleTableConfig config = SingleTableConfig.forTable("TBL1")
+            .asPrimaryTable()
+            .idColumn("ID")
+            .dataColumn("d5", SQL_INTEGER)
+                .autoMapped(col -> policy)
+            .get();
+        
+        // @formatter:on
+
+        final Map<String, Serializable> globalVariables = new HashMap<>();
+
+        final ProcessContext ctx = new ProcessContext() {
+
+            @Override
+            public Map<String, Serializable> getGlobalVariables() {
+                return globalVariables;
+            }
+
+            @Override
+            public Set<Flag> getGlobalFlags() {
+                return Collections.emptySet();
+            }
+
+        };
+
+        assertThrows(ConfigException.class, () -> config.lookupAssignment("foo", ctx));
+
+    }
+
+    @Test
+    void testBuilderConfigErrorWrongTableAutoMappingFunction() {
+
+        final AutoMappingPolicy policy = new AutoMappingPolicy() {
+
+            @Override
+            public ArgColumnAssignment map(String argName, ProcessContext ctx) {
+                return new ArgColumnAssignment(new ArgMetaInfo(argName, DefaultAdlType.STRING, false, false),
+                        new DataColumn("TBL_WRONG", "col", SQL_VARCHAR, false, false, null));
+            }
+
+            @Override
+            public boolean isApplicable(String argName) {
+                return true;
+            }
+        };
+
+        // @formatter:off
+        
+        SingleTableConfig config = SingleTableConfig.forTable("TBL1")
+            .asPrimaryTable()
+            .idColumn("ID")
+            .dataColumn("d5", SQL_INTEGER)
+                .autoMapped(col -> policy)
+            .get();
+        
+        // @formatter:on
+
+        final Map<String, Serializable> globalVariables = new HashMap<>();
+
+        final ProcessContext ctx = new ProcessContext() {
+
+            @Override
+            public Map<String, Serializable> getGlobalVariables() {
+                return globalVariables;
+            }
+
+            @Override
+            public Set<Flag> getGlobalFlags() {
+                return Collections.emptySet();
+            }
+
+        };
+        assertThrows(LookupException.class, () -> config.lookupAssignment("foo", ctx));
 
     }
 

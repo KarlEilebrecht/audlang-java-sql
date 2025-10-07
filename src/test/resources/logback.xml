@@ -9,6 +9,7 @@
     </appender>
 
     <logger name="de.calamanari.adl.sql" level="INFO"/>
+    <logger name="de.calamanari.adl.sql.config" level="INFO"/>
 
 
     <root level="INFO">
