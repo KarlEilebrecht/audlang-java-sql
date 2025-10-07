@@ -688,6 +688,41 @@ class SingleTableConfigTest {
     }
 
     @Test
+    void testBuilderBugInAutoMappingFunction() {
+
+        // @formatter:off
+        
+        SingleTableConfig config = SingleTableConfig.forTable("TBL1")
+            .asPrimaryTable()
+            .idColumn("ID")
+            .dataColumn("d5", SQL_INTEGER)
+                .autoMapped(argName -> argName.endsWith(".int") ? argName.substring(0, argName.length()-5) : null, INTEGER)
+            .get();
+        
+        // @formatter:on
+
+        final Map<String, Serializable> globalVariables = new HashMap<>();
+
+        final ProcessContext ctx = new ProcessContext() {
+
+            @Override
+            public Map<String, Serializable> getGlobalVariables() {
+                return globalVariables;
+            }
+
+            @Override
+            public Set<Flag> getGlobalFlags() {
+                return Collections.emptySet();
+            }
+
+        };
+
+        assertThrows(LookupException.class, () -> config.contains(".int"));
+        assertThrows(LookupException.class, () -> config.lookupAssignment(".int", ctx));
+
+    }
+
+    @Test
     void testBadDataBinding() {
         // @formatter:off
         

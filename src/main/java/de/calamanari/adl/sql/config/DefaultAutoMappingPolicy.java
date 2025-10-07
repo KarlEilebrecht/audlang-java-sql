@@ -24,6 +24,9 @@ import static de.calamanari.adl.sql.config.ConfigUtils.assertContextNotNull;
 import java.io.Serializable;
 import java.util.function.UnaryOperator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.calamanari.adl.AudlangMessage;
 import de.calamanari.adl.CommonErrors;
 import de.calamanari.adl.ProcessContext;
@@ -50,6 +53,8 @@ import de.calamanari.adl.cnv.tps.ConfigException;
 public class DefaultAutoMappingPolicy implements AutoMappingPolicy {
 
     private static final long serialVersionUID = 7860446717172333819L;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultAutoMappingPolicy.class);
 
     /**
      * Dynamic variable that can be specified as a filterValue to tell the system to replace it at runtime with the value of the <i>global variable</i>
@@ -120,7 +125,15 @@ public class DefaultAutoMappingPolicy implements AutoMappingPolicy {
 
     @Override
     public boolean isApplicable(String argName) {
-        return extractorFunction.apply(argName) != null;
+
+        String localArgName = extractorFunction.apply(argName);
+
+        boolean valid = ConfigUtils.isValidArgName(localArgName);
+        if (localArgName != null && !valid) {
+            LOGGER.debug("An auto-mapping policy defined for table={} applied to argName={} returned an invalid localArgName={} - SKIPPED!",
+                    assignmentTemplate.column().tableName(), argName, localArgName);
+        }
+        return valid;
     }
 
     /**

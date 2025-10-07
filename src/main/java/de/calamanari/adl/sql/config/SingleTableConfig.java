@@ -395,17 +395,28 @@ public record SingleTableConfig(String tableName, String idColumnName, TableNatu
         assertContextNotNull(ctx);
         assertValidArgName(argName);
         ArgColumnAssignment assignment = argColumnMap.get(argName);
-        if (assignment == null && autoMappingPolicy.isApplicable(argName)) {
-            assignment = autoMappingPolicy.map(argName, ctx);
-            if (assignment != null && !assignment.column().tableName().equals(this.tableName)) {
-                throw new LookupException(
-                        String.format("Inconsistent auto-mapping detected: The argName=%s was mapped to %s, a column that does not belong to this table (%s).",
-                                argName, assignment, this.tableName),
-                        AudlangMessage.argMsg(CommonErrors.ERR_3000_MAPPING_FAILED, argName));
+        try {
+            if (assignment == null && autoMappingPolicy.isApplicable(argName)) {
+                assignment = autoMappingPolicy.map(argName, ctx);
             }
         }
+        catch (ConfigException ex) {
+            throw ex;
+        }
+        catch (RuntimeException ex) {
+            AudlangMessage userMessage = AudlangMessage.argMsg(CommonErrors.ERR_3000_MAPPING_FAILED, argName);
+            throw new LookupException(
+                    String.format("An auto-mapping defined for table=%s failed unexpectedly while being applied to argName=%s.", tableName, argName), ex,
+                    userMessage);
+        }
+        if (assignment != null && !assignment.column().tableName().equals(this.tableName)) {
+            throw new LookupException(
+                    String.format("Inconsistent auto-mapping detected: The argName=%s was mapped to %s, a column that does not belong to this table (%s).",
+                            argName, assignment, this.tableName),
+                    AudlangMessage.argMsg(CommonErrors.ERR_3000_MAPPING_FAILED, argName));
+        }
         if (assignment == null) {
-            throw new LookupException("No meta data available for argName=" + argName);
+            throw new LookupException("No meta data available for argName=" + argName, AudlangMessage.argMsg(CommonErrors.ERR_3000_MAPPING_FAILED, argName));
         }
         return assignment;
     }
@@ -413,7 +424,18 @@ public record SingleTableConfig(String tableName, String idColumnName, TableNatu
     @Override
     public boolean contains(String argName) {
         assertValidArgName(argName);
-        return argColumnMap.containsKey(argName) || autoMappingPolicy.isApplicable(argName);
+        try {
+            return argColumnMap.containsKey(argName) || autoMappingPolicy.isApplicable(argName);
+        }
+        catch (ConfigException ex) {
+            throw ex;
+        }
+        catch (RuntimeException ex) {
+            AudlangMessage userMessage = AudlangMessage.argMsg(CommonErrors.ERR_3000_MAPPING_FAILED, argName);
+            throw new LookupException(
+                    String.format("An auto-mapping defined for table=%s failed unexpectedly while being applied to argName=%s.", tableName, argName), ex,
+                    userMessage);
+        }
     }
 
     @Override
