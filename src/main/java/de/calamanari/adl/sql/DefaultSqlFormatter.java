@@ -348,7 +348,7 @@ public enum DefaultSqlFormatter implements ArgValueFormatter {
             try {
                 return argValue.equals(sdf.format(sdf.parse(argValue)));
             }
-            catch (ParseException ex) {
+            catch (ParseException _) {
                 return false;
             }
         }

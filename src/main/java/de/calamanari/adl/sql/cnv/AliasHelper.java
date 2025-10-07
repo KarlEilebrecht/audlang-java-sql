@@ -96,13 +96,13 @@ public class AliasHelper {
             List<CoreExpression> orMembers = cmb.members().stream().map(NegationExpression.class::cast).map(NegationExpression::delegate)
                     .collect(Collectors.toCollection(ArrayList::new));
             CoreExpression aliasInExpression = CombinedExpression.orOf(orMembers);
-            return aliasMap.computeIfAbsent(aliasInExpression, e -> new ExpressionAlias(createAliasName(), aliasInExpression));
+            return aliasMap.computeIfAbsent(aliasInExpression, _ -> new ExpressionAlias(createAliasName(), aliasInExpression));
         case NegationExpression neg:
-            return aliasMap.computeIfAbsent(neg.delegate(), e -> new ExpressionAlias(createAliasName(), neg.delegate()));
+            return aliasMap.computeIfAbsent(neg.delegate(), _ -> new ExpressionAlias(createAliasName(), neg.delegate()));
         case CombinedExpression cmb when cmb.combiType() == CombinedExpressionType.OR:
-            return aliasMap.computeIfAbsent(cmb, e -> new ExpressionAlias(createAliasName(), cmb));
+            return aliasMap.computeIfAbsent(cmb, _ -> new ExpressionAlias(createAliasName(), cmb));
         case MatchExpression match:
-            return aliasMap.computeIfAbsent(match, e -> new ExpressionAlias(createAliasName(), match));
+            return aliasMap.computeIfAbsent(match, _ -> new ExpressionAlias(createAliasName(), match));
         default:
             throw new IllegalArgumentException("Cannot create alias for expression (unsupported type), given: " + expression);
         }
@@ -362,7 +362,7 @@ public class AliasHelper {
             MatchCondition condition = conditionFactory.createMatchCondition(alias.getExpression());
             String tableKey = condition.isDualTableReferenceMatch() ? createTableKey(condition.tableLeft().tableName(), condition.tableRight().tableName())
                     : condition.tableLeft().tableName();
-            List<ExpressionAlias> aliasGroup = temp.computeIfAbsent(tableKey, key -> new ArrayList<>());
+            List<ExpressionAlias> aliasGroup = temp.computeIfAbsent(tableKey, _ -> new ArrayList<>());
             aliasGroup.add(alias);
         }
         return new ArrayList<>(temp.values());

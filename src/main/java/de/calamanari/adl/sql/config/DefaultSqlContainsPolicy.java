@@ -79,7 +79,7 @@ public enum DefaultSqlContainsPolicy implements SqlContainsPolicy {
     /**
      * Special case policy: will reject any attempt to translate a CONTAINS and throw {@link ContainsNotSupportedException}
      */
-    UNSUPPORTED(PreparatorFunction.none(), (columnName, patternParameter) -> {
+    UNSUPPORTED(PreparatorFunction.none(), (columnName, _) -> {
         AudlangMessage userMessage = AudlangMessage.msg(CommonErrors.ERR_2200_CONTAINS_NOT_SUPPORTED);
         throw new ContainsNotSupportedException("Error: Underlying data store does not support translating CONTAINS conditions, column: " + columnName,
                 userMessage);

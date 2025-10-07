@@ -121,7 +121,7 @@ public record DefaultQueryParameter(String id, AdlSqlType adlSqlType, Serializab
             try {
                 type.cast(value);
             }
-            catch (ClassCastException ex) {
+            catch (ClassCastException _) {
                 throw new ConfigException(
                         String.format("Transfer type mismatch: id=%s, adlSqlType=%s, expectedType=%s, incompatible value=%s", id, adlSqlType, type, value),
                         AudlangMessage.msg(CommonErrors.ERR_3001_TYPE_MISMATCH));

@@ -745,7 +745,7 @@ class SingleTableConfigTest {
             .asPrimaryTable()
             .idColumn("ID")
             .dataColumn("d5", SQL_INTEGER)
-                .autoMapped(col -> policy)
+                .autoMapped(_ -> policy)
             .get();
         
         // @formatter:on
@@ -793,7 +793,7 @@ class SingleTableConfigTest {
             .asPrimaryTable()
             .idColumn("ID")
             .dataColumn("d5", SQL_INTEGER)
-                .autoMapped(col -> policy)
+                .autoMapped(_ -> policy)
             .get();
         
         // @formatter:on

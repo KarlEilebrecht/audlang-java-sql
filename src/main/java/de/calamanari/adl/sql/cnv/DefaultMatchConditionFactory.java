@@ -55,7 +55,7 @@ public class DefaultMatchConditionFactory implements MatchConditionFactory {
 
     @Override
     public MatchCondition createSimpleCondition(SimpleExpression expression) {
-        return cache.computeIfAbsent(expression, e -> MatchCondition.createSimpleCondition(expression, ctx));
+        return cache.computeIfAbsent(expression, _ -> MatchCondition.createSimpleCondition(expression, ctx));
     }
 
     @Override
@@ -70,7 +70,7 @@ public class DefaultMatchConditionFactory implements MatchConditionFactory {
         CombinedExpressionType combiType = (expressions.get(0) instanceof NegationExpression) ? CombinedExpressionType.AND : CombinedExpressionType.OR;
         CoreExpression keyExpression = CombinedExpression.of(new ArrayList<>(expressions), combiType);
 
-        return cache.computeIfAbsent(keyExpression, e -> MatchCondition.createInClauseCondition(expressions, ctx));
+        return cache.computeIfAbsent(keyExpression, _ -> MatchCondition.createInClauseCondition(expressions, ctx));
     }
 
 }

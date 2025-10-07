@@ -529,7 +529,7 @@ public class DefaultQueryParameterCreator implements QueryParameterCreator {
                     return temp.getTime();
                 }
             }
-            catch (ParseException ex) {
+            catch (ParseException _) {
                 // probing failed
             }
         }

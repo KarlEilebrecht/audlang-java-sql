@@ -539,9 +539,9 @@ public class CoreExpressionSqlHelper {
         switch (expression) {
         case MatchExpression match:
             return (match.operator() != MatchOperator.IS_UNKNOWN || isNullQueryingAllowed(match.argName()));
-        case NegationExpression neg:
+        case NegationExpression _:
             return true;
-        case CombinedExpression cmb when !isSubNested(expression):
+        case CombinedExpression _ when !isSubNested(expression):
             return true;
         default:
             throw new IllegalStateException("Unexpected expression type to base query eligibility, given: " + expression);
