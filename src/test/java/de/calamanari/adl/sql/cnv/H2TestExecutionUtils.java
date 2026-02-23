@@ -19,9 +19,6 @@
 
 package de.calamanari.adl.sql.cnv;
 
-import static de.calamanari.adl.cnv.StandardConversions.parseCoreExpression;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -42,6 +39,9 @@ import de.calamanari.adl.FormatStyle;
 import de.calamanari.adl.sql.QueryTemplateWithParameters;
 import de.calamanari.adl.sql.QueryType;
 import de.calamanari.adl.sql.config.DataBinding;
+
+import static de.calamanari.adl.cnv.StandardConversions.parseCoreExpression;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Utility to wrap the boiler-plate code to run a prepared statement via JDBC against the in-memory H2-database.

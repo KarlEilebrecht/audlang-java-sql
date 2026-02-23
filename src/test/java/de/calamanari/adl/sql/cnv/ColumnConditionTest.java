@@ -19,9 +19,6 @@
 
 package de.calamanari.adl.sql.cnv;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -34,6 +31,9 @@ import de.calamanari.adl.sql.DefaultQueryParameter;
 import de.calamanari.adl.sql.QueryParameter;
 import de.calamanari.adl.sql.config.AdlSqlColumn;
 import de.calamanari.adl.sql.config.FilterColumn;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

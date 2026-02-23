@@ -19,6 +19,15 @@
 
 package de.calamanari.adl.sql.cnv;
 
+import java.util.function.Supplier;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import de.calamanari.adl.AudlangUserMessage;
+import de.calamanari.adl.CommonErrors;
+import de.calamanari.adl.ConversionException;
+
 import static de.calamanari.adl.sql.cnv.H2TestBindings.FACTS_ONLY;
 import static de.calamanari.adl.sql.cnv.H2TestBindings.FLAT_ONLY;
 import static de.calamanari.adl.sql.cnv.H2TestBindings.POSDATA_ONLY;
@@ -30,15 +39,6 @@ import static de.calamanari.adl.sql.cnv.H2TestExecutionUtils.selectCount;
 import static de.calamanari.adl.sql.cnv.H2TestExecutionUtils.selectIds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.util.function.Supplier;
-
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-
-import de.calamanari.adl.AudlangUserMessage;
-import de.calamanari.adl.CommonErrors;
-import de.calamanari.adl.ConversionException;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

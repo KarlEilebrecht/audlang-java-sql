@@ -19,14 +19,14 @@
 
 package de.calamanari.adl.sql.config;
 
-import static de.calamanari.adl.sql.config.ConfigUtils.isValidColumnName;
-import static de.calamanari.adl.sql.config.ConfigUtils.isValidTableName;
-
 import de.calamanari.adl.cnv.TemplateParameterUtils;
 import de.calamanari.adl.cnv.tps.AdlFormattingException;
 import de.calamanari.adl.cnv.tps.ConfigException;
 import de.calamanari.adl.irl.MatchOperator;
 import de.calamanari.adl.sql.AdlSqlType;
+
+import static de.calamanari.adl.sql.config.ConfigUtils.isValidColumnName;
+import static de.calamanari.adl.sql.config.ConfigUtils.isValidTableName;
 
 /**
  * A {@link FilterColumn} defines an extra filter condition to be applied to a query, so the scope of the original query will be <i>narrowed</i>.

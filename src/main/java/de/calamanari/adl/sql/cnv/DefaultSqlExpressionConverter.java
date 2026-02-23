@@ -19,31 +19,6 @@
 
 package de.calamanari.adl.sql.cnv;
 
-import static de.calamanari.adl.FormatUtils.appendIndentOrWhitespace;
-import static de.calamanari.adl.FormatUtils.appendSpaced;
-import static de.calamanari.adl.FormatUtils.space;
-import static de.calamanari.adl.FormatUtils.stripTrailingWhitespace;
-import static de.calamanari.adl.sql.SqlFormatConstants.AND;
-import static de.calamanari.adl.sql.SqlFormatConstants.AS;
-import static de.calamanari.adl.sql.SqlFormatConstants.BRACE_CLOSE;
-import static de.calamanari.adl.sql.SqlFormatConstants.BRACE_OPEN;
-import static de.calamanari.adl.sql.SqlFormatConstants.CMP_EQUALS;
-import static de.calamanari.adl.sql.SqlFormatConstants.COUNT;
-import static de.calamanari.adl.sql.SqlFormatConstants.DISTINCT;
-import static de.calamanari.adl.sql.SqlFormatConstants.FROM;
-import static de.calamanari.adl.sql.SqlFormatConstants.INNER_JOIN;
-import static de.calamanari.adl.sql.SqlFormatConstants.LEFT_OUTER_JOIN;
-import static de.calamanari.adl.sql.SqlFormatConstants.ON;
-import static de.calamanari.adl.sql.SqlFormatConstants.OR;
-import static de.calamanari.adl.sql.SqlFormatConstants.SELECT;
-import static de.calamanari.adl.sql.SqlFormatConstants.WHERE;
-import static de.calamanari.adl.sql.SqlFormatConstants.WITH;
-import static de.calamanari.adl.sql.cnv.ConversionDirective.ENFORCE_PRIMARY_TABLE;
-import static de.calamanari.adl.sql.cnv.ConversionHint.LEFT_OUTER_JOINS_REQUIRED;
-import static de.calamanari.adl.sql.cnv.ConversionHint.NO_JOINS_REQUIRED;
-import static de.calamanari.adl.sql.cnv.ConversionHint.SIMPLE_CONDITION;
-import static de.calamanari.adl.sql.cnv.ConversionHint.SINGLE_TABLE_CONTAINING_ALL_ROWS;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,6 +53,31 @@ import de.calamanari.adl.sql.SqlFormatUtils;
 import de.calamanari.adl.sql.config.DataBinding;
 import de.calamanari.adl.sql.config.TableMetaInfo;
 import de.calamanari.adl.sql.config.TableNature;
+
+import static de.calamanari.adl.FormatUtils.appendIndentOrWhitespace;
+import static de.calamanari.adl.FormatUtils.appendSpaced;
+import static de.calamanari.adl.FormatUtils.space;
+import static de.calamanari.adl.FormatUtils.stripTrailingWhitespace;
+import static de.calamanari.adl.sql.SqlFormatConstants.AND;
+import static de.calamanari.adl.sql.SqlFormatConstants.AS;
+import static de.calamanari.adl.sql.SqlFormatConstants.BRACE_CLOSE;
+import static de.calamanari.adl.sql.SqlFormatConstants.BRACE_OPEN;
+import static de.calamanari.adl.sql.SqlFormatConstants.CMP_EQUALS;
+import static de.calamanari.adl.sql.SqlFormatConstants.COUNT;
+import static de.calamanari.adl.sql.SqlFormatConstants.DISTINCT;
+import static de.calamanari.adl.sql.SqlFormatConstants.FROM;
+import static de.calamanari.adl.sql.SqlFormatConstants.INNER_JOIN;
+import static de.calamanari.adl.sql.SqlFormatConstants.LEFT_OUTER_JOIN;
+import static de.calamanari.adl.sql.SqlFormatConstants.ON;
+import static de.calamanari.adl.sql.SqlFormatConstants.OR;
+import static de.calamanari.adl.sql.SqlFormatConstants.SELECT;
+import static de.calamanari.adl.sql.SqlFormatConstants.WHERE;
+import static de.calamanari.adl.sql.SqlFormatConstants.WITH;
+import static de.calamanari.adl.sql.cnv.ConversionDirective.ENFORCE_PRIMARY_TABLE;
+import static de.calamanari.adl.sql.cnv.ConversionHint.LEFT_OUTER_JOINS_REQUIRED;
+import static de.calamanari.adl.sql.cnv.ConversionHint.NO_JOINS_REQUIRED;
+import static de.calamanari.adl.sql.cnv.ConversionHint.SIMPLE_CONDITION;
+import static de.calamanari.adl.sql.cnv.ConversionHint.SINGLE_TABLE_CONTAINING_ALL_ROWS;
 
 /**
  * Standard implementation for transforming {@link CoreExpression}s into SQL.

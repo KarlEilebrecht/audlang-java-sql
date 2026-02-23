@@ -19,9 +19,6 @@
 
 package de.calamanari.adl.sql;
 
-import static de.calamanari.adl.sql.SqlFormatConstants.FALSE;
-import static de.calamanari.adl.sql.SqlFormatConstants.TRUE;
-
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -36,6 +33,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.calamanari.adl.cnv.tps.AdlFormattingException;
+
+import static de.calamanari.adl.sql.SqlFormatConstants.FALSE;
+import static de.calamanari.adl.sql.SqlFormatConstants.TRUE;
 
 /**
  * The {@link DefaultQueryParameterApplicator} exclusively supports the {@link DefaultAdlSqlType} as <i>base types</i>, means the types themselves or any type

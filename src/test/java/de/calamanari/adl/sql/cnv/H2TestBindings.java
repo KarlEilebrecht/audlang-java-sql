@@ -19,6 +19,17 @@
 
 package de.calamanari.adl.sql.cnv;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import de.calamanari.adl.cnv.tps.AdlType;
+import de.calamanari.adl.cnv.tps.NativeTypeCaster;
+import de.calamanari.adl.sql.config.DataBinding;
+import de.calamanari.adl.sql.config.DefaultSqlContainsPolicy;
+import de.calamanari.adl.sql.config.MultiTableConfig;
+import de.calamanari.adl.sql.config.SingleTableConfig;
+import de.calamanari.adl.sql.config.TableNature;
+
 import static de.calamanari.adl.cnv.tps.DefaultAdlType.BOOL;
 import static de.calamanari.adl.cnv.tps.DefaultAdlType.DATE;
 import static de.calamanari.adl.cnv.tps.DefaultAdlType.DECIMAL;
@@ -35,17 +46,6 @@ import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_SMALLINT;
 import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_TIMESTAMP;
 import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_TINYINT;
 import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_VARCHAR;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import de.calamanari.adl.cnv.tps.AdlType;
-import de.calamanari.adl.cnv.tps.NativeTypeCaster;
-import de.calamanari.adl.sql.config.DataBinding;
-import de.calamanari.adl.sql.config.DefaultSqlContainsPolicy;
-import de.calamanari.adl.sql.config.MultiTableConfig;
-import de.calamanari.adl.sql.config.SingleTableConfig;
-import de.calamanari.adl.sql.config.TableNature;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

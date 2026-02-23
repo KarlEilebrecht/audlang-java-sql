@@ -19,9 +19,6 @@
 
 package de.calamanari.adl.sql;
 
-import static de.calamanari.adl.sql.SqlFormatConstants.FALSE;
-import static de.calamanari.adl.sql.SqlFormatConstants.TRUE;
-
 import java.sql.PreparedStatement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,6 +31,9 @@ import de.calamanari.adl.cnv.tps.DefaultArgValueFormatter;
 import de.calamanari.adl.irl.MatchOperator;
 import de.calamanari.adl.sql.config.FilterColumn;
 import de.calamanari.adl.util.TriFunction;
+
+import static de.calamanari.adl.sql.SqlFormatConstants.FALSE;
+import static de.calamanari.adl.sql.SqlFormatConstants.TRUE;
 
 /**
  * The formatters in this enumeration define the default behavior when formatting values for sql.

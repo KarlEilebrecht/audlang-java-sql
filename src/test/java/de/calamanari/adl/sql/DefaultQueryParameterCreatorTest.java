@@ -19,10 +19,6 @@
 
 package de.calamanari.adl.sql;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,6 +34,10 @@ import de.calamanari.adl.cnv.tps.ArgValueFormatter;
 import de.calamanari.adl.cnv.tps.DefaultAdlType;
 import de.calamanari.adl.cnv.tps.DefaultArgValueFormatter;
 import de.calamanari.adl.irl.MatchOperator;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

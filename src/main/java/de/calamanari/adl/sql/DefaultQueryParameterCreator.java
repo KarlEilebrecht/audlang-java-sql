@@ -19,8 +19,6 @@
 
 package de.calamanari.adl.sql;
 
-import static de.calamanari.adl.sql.SqlFormatConstants.TRUE;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Date;
@@ -39,6 +37,8 @@ import de.calamanari.adl.cnv.tps.ArgMetaInfo;
 import de.calamanari.adl.cnv.tps.DefaultAdlType;
 import de.calamanari.adl.irl.MatchOperator;
 import de.calamanari.adl.sql.config.FilterColumn;
+
+import static de.calamanari.adl.sql.SqlFormatConstants.TRUE;
 
 /**
  * The {@link DefaultQueryParameterCreator} takes the base type ({@link AdlType#getBaseType()}) of an argument's type and tries to create a

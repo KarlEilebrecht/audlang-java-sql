@@ -19,23 +19,6 @@
 
 package de.calamanari.adl.sql.cnv;
 
-import static de.calamanari.adl.cnv.StandardConversions.parseCoreExpression;
-import static de.calamanari.adl.cnv.tps.DefaultAdlType.BOOL;
-import static de.calamanari.adl.cnv.tps.DefaultAdlType.DATE;
-import static de.calamanari.adl.cnv.tps.DefaultAdlType.DECIMAL;
-import static de.calamanari.adl.cnv.tps.DefaultAdlType.INTEGER;
-import static de.calamanari.adl.cnv.tps.DefaultAdlType.STRING;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_BIGINT;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_BIT;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_BOOLEAN;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_DATE;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_DECIMAL;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_INTEGER;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_TIMESTAMP;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_VARCHAR;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +36,23 @@ import de.calamanari.adl.sql.config.DefaultSqlContainsPolicy;
 import de.calamanari.adl.sql.config.MultiTableConfig;
 import de.calamanari.adl.sql.config.SingleTableConfig;
 import de.calamanari.adl.sql.config.TableNature;
+
+import static de.calamanari.adl.cnv.StandardConversions.parseCoreExpression;
+import static de.calamanari.adl.cnv.tps.DefaultAdlType.BOOL;
+import static de.calamanari.adl.cnv.tps.DefaultAdlType.DATE;
+import static de.calamanari.adl.cnv.tps.DefaultAdlType.DECIMAL;
+import static de.calamanari.adl.cnv.tps.DefaultAdlType.INTEGER;
+import static de.calamanari.adl.cnv.tps.DefaultAdlType.STRING;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_BIGINT;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_BIT;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_BOOLEAN;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_DATE;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_DECIMAL;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_INTEGER;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_TIMESTAMP;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_VARCHAR;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

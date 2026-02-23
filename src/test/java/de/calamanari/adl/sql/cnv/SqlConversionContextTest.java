@@ -19,17 +19,17 @@
 
 package de.calamanari.adl.sql.cnv;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-
 import org.junit.jupiter.api.Test;
 
 import de.calamanari.adl.irl.CoreExpression;
 import de.calamanari.adl.irl.MatchExpression;
 import de.calamanari.adl.irl.MatchOperator;
 import de.calamanari.adl.irl.Operand;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

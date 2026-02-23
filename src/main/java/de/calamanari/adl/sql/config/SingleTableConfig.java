@@ -19,12 +19,6 @@
 
 package de.calamanari.adl.sql.config;
 
-import static de.calamanari.adl.sql.config.ConfigUtils.assertContextNotNull;
-import static de.calamanari.adl.sql.config.ConfigUtils.assertValidArgName;
-import static de.calamanari.adl.sql.config.ConfigUtils.isValidArgName;
-import static de.calamanari.adl.sql.config.ConfigUtils.isValidColumnName;
-import static de.calamanari.adl.sql.config.ConfigUtils.isValidTableName;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -52,6 +46,12 @@ import de.calamanari.adl.sql.config.ConfigBuilderInterfaces.SingleTableDataColum
 import de.calamanari.adl.sql.config.ConfigBuilderInterfaces.SingleTableDataColumnStep2;
 import de.calamanari.adl.sql.config.ConfigBuilderInterfaces.SingleTableStep2;
 import de.calamanari.adl.sql.config.ConfigBuilderInterfaces.SingleTableStep3;
+
+import static de.calamanari.adl.sql.config.ConfigUtils.assertContextNotNull;
+import static de.calamanari.adl.sql.config.ConfigUtils.assertValidArgName;
+import static de.calamanari.adl.sql.config.ConfigUtils.isValidArgName;
+import static de.calamanari.adl.sql.config.ConfigUtils.isValidColumnName;
+import static de.calamanari.adl.sql.config.ConfigUtils.isValidTableName;
 
 /**
  * A {@link SingleTableConfig} describes the mappings of argNames to columns of one particular table.

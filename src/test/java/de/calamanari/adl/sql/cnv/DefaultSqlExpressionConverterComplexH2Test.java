@@ -19,6 +19,8 @@
 
 package de.calamanari.adl.sql.cnv;
 
+import org.junit.jupiter.api.Test;
+
 import static de.calamanari.adl.sql.cnv.H2TestBindings.BASE_AND_POSDATA_MR;
 import static de.calamanari.adl.sql.cnv.H2TestBindings.BASE_AND_POSDATA_MR_ANY;
 import static de.calamanari.adl.sql.cnv.H2TestBindings.BASE_AND_POSDATA_SPARSE;
@@ -29,8 +31,6 @@ import static de.calamanari.adl.sql.cnv.H2TestBindings.SURVEY_AND_FACTS;
 import static de.calamanari.adl.sql.cnv.H2TestExecutionUtils.TEST_AUGMENT;
 import static de.calamanari.adl.sql.cnv.H2TestExecutionUtils.assertQueryResult;
 import static de.calamanari.adl.sql.cnv.H2TestExecutionUtils.list;
-
-import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

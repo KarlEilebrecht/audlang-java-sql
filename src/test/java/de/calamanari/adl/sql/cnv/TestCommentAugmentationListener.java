@@ -19,9 +19,9 @@
 
 package de.calamanari.adl.sql.cnv;
 
-import static de.calamanari.adl.FormatUtils.appendIndentOrWhitespace;
-
 import java.util.Arrays;
+
+import static de.calamanari.adl.FormatUtils.appendIndentOrWhitespace;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

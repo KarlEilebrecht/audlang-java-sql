@@ -19,9 +19,6 @@
 
 package de.calamanari.adl.sql.cnv;
 
-import static de.calamanari.adl.irl.biceps.MemberUtils.EMPTY_MEMBERS;
-import static de.calamanari.adl.sql.cnv.ConversionHint.SIMPLE_CONDITION;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +48,9 @@ import de.calamanari.adl.irl.biceps.ImplicationResolver;
 import de.calamanari.adl.irl.biceps.NodeType;
 import de.calamanari.adl.sql.AdlSqlType;
 import de.calamanari.adl.sql.config.DataBinding;
+
+import static de.calamanari.adl.irl.biceps.MemberUtils.EMPTY_MEMBERS;
+import static de.calamanari.adl.sql.cnv.ConversionHint.SIMPLE_CONDITION;
 
 /**
  * The {@link CoreExpressionSqlHelper} provides a couple of utilities to support the conversion of a {@link CoreExpression} into an SQL-expression (e.g.

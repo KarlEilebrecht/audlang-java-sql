@@ -19,13 +19,6 @@
 
 package de.calamanari.adl.sql.config;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,6 +30,13 @@ import de.calamanari.adl.cnv.tps.ArgMetaInfo;
 import de.calamanari.adl.cnv.tps.ConfigException;
 import de.calamanari.adl.cnv.tps.DefaultAdlType;
 import de.calamanari.adl.sql.DefaultAdlSqlType;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

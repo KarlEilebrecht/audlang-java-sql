@@ -19,9 +19,6 @@
 
 package de.calamanari.adl.sql.config;
 
-import static de.calamanari.adl.sql.config.ConfigUtils.isValidColumnName;
-import static de.calamanari.adl.sql.config.ConfigUtils.isValidTableName;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -34,6 +31,9 @@ import de.calamanari.adl.sql.config.ConfigBuilderInterfaces.DataColumnStep1;
 import de.calamanari.adl.sql.config.ConfigBuilderInterfaces.DataColumnStep2;
 import de.calamanari.adl.sql.config.ConfigBuilderInterfaces.DataColumnStep3;
 import de.calamanari.adl.sql.config.ConfigBuilderInterfaces.DataColumnStep4;
+
+import static de.calamanari.adl.sql.config.ConfigUtils.isValidColumnName;
+import static de.calamanari.adl.sql.config.ConfigUtils.isValidTableName;
 
 /**
  * A {@link DataColumn} describes the characteristics of a table colum in a database.

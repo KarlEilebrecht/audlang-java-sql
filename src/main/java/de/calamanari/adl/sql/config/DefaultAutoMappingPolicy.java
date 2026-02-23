@@ -19,8 +19,6 @@
 
 package de.calamanari.adl.sql.config;
 
-import static de.calamanari.adl.sql.config.ConfigUtils.assertContextNotNull;
-
 import java.io.Serializable;
 import java.util.function.UnaryOperator;
 
@@ -32,6 +30,8 @@ import de.calamanari.adl.CommonErrors;
 import de.calamanari.adl.ProcessContext;
 import de.calamanari.adl.cnv.tps.ArgMetaInfo;
 import de.calamanari.adl.cnv.tps.ConfigException;
+
+import static de.calamanari.adl.sql.config.ConfigUtils.assertContextNotNull;
 
 /**
  * The {@link DefaultAutoMappingPolicy} maps arguments to columns with a template-based approach and an extractor operator.

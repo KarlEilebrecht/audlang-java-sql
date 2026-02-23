@@ -19,22 +19,6 @@
 
 package de.calamanari.adl.sql.config;
 
-import static de.calamanari.adl.cnv.tps.DefaultAdlType.BOOL;
-import static de.calamanari.adl.cnv.tps.DefaultAdlType.INTEGER;
-import static de.calamanari.adl.cnv.tps.DefaultAdlType.STRING;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_BIT;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_BOOLEAN;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_INTEGER;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_TINYINT;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_VARCHAR;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
@@ -53,6 +37,22 @@ import de.calamanari.adl.cnv.tps.DefaultAdlType;
 import de.calamanari.adl.cnv.tps.DefaultArgMetaInfoLookup;
 import de.calamanari.adl.cnv.tps.LookupException;
 import de.calamanari.adl.sql.DefaultAdlSqlType;
+
+import static de.calamanari.adl.cnv.tps.DefaultAdlType.BOOL;
+import static de.calamanari.adl.cnv.tps.DefaultAdlType.INTEGER;
+import static de.calamanari.adl.cnv.tps.DefaultAdlType.STRING;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_BIT;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_BOOLEAN;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_INTEGER;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_TINYINT;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_VARCHAR;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

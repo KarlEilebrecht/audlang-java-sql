@@ -19,19 +19,6 @@
 
 package de.calamanari.adl.sql.cnv;
 
-import static de.calamanari.adl.sql.cnv.ConversionHint.LEFT_OUTER_JOINS_REQUIRED;
-import static de.calamanari.adl.sql.cnv.ConversionHint.NO_AND;
-import static de.calamanari.adl.sql.cnv.ConversionHint.NO_IS_UNKNOWN;
-import static de.calamanari.adl.sql.cnv.ConversionHint.NO_JOINS_REQUIRED;
-import static de.calamanari.adl.sql.cnv.ConversionHint.NO_MULTI_ROW_REFERENCE_MATCH;
-import static de.calamanari.adl.sql.cnv.ConversionHint.NO_MULTI_ROW_SENSITIVITY;
-import static de.calamanari.adl.sql.cnv.ConversionHint.NO_OR;
-import static de.calamanari.adl.sql.cnv.ConversionHint.NO_REFERENCE_MATCH;
-import static de.calamanari.adl.sql.cnv.ConversionHint.SIMPLE_CONDITION;
-import static de.calamanari.adl.sql.cnv.ConversionHint.SINGLE_ATTRIBUTE;
-import static de.calamanari.adl.sql.cnv.ConversionHint.SINGLE_TABLE;
-import static de.calamanari.adl.sql.cnv.ConversionHint.SINGLE_TABLE_CONTAINING_ALL_ROWS;
-
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -49,6 +36,19 @@ import de.calamanari.adl.irl.ParentAwareExpressionNode;
 import de.calamanari.adl.irl.SimpleExpression;
 import de.calamanari.adl.sql.config.DataBinding;
 import de.calamanari.adl.sql.config.TableMetaInfo;
+
+import static de.calamanari.adl.sql.cnv.ConversionHint.LEFT_OUTER_JOINS_REQUIRED;
+import static de.calamanari.adl.sql.cnv.ConversionHint.NO_AND;
+import static de.calamanari.adl.sql.cnv.ConversionHint.NO_IS_UNKNOWN;
+import static de.calamanari.adl.sql.cnv.ConversionHint.NO_JOINS_REQUIRED;
+import static de.calamanari.adl.sql.cnv.ConversionHint.NO_MULTI_ROW_REFERENCE_MATCH;
+import static de.calamanari.adl.sql.cnv.ConversionHint.NO_MULTI_ROW_SENSITIVITY;
+import static de.calamanari.adl.sql.cnv.ConversionHint.NO_OR;
+import static de.calamanari.adl.sql.cnv.ConversionHint.NO_REFERENCE_MATCH;
+import static de.calamanari.adl.sql.cnv.ConversionHint.SIMPLE_CONDITION;
+import static de.calamanari.adl.sql.cnv.ConversionHint.SINGLE_ATTRIBUTE;
+import static de.calamanari.adl.sql.cnv.ConversionHint.SINGLE_TABLE;
+import static de.calamanari.adl.sql.cnv.ConversionHint.SINGLE_TABLE_CONTAINING_ALL_ROWS;
 
 /**
  * {@link CoreExpressionStats} is a report with meta information about an expression to be converted.

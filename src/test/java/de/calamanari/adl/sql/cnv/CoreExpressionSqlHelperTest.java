@@ -19,11 +19,6 @@
 
 package de.calamanari.adl.sql.cnv;
 
-import static de.calamanari.adl.cnv.StandardConversions.parseCoreExpression;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -42,6 +37,11 @@ import de.calamanari.adl.irl.Operand;
 import de.calamanari.adl.sql.config.DataBinding;
 import de.calamanari.adl.sql.config.DefaultSqlContainsPolicy;
 import de.calamanari.adl.sql.config.DummyDataTableConfig;
+
+import static de.calamanari.adl.cnv.StandardConversions.parseCoreExpression;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

@@ -19,33 +19,6 @@
 
 package de.calamanari.adl.sql.cnv;
 
-import static de.calamanari.adl.FormatUtils.appendIndentOrWhitespace;
-import static de.calamanari.adl.FormatUtils.appendSpaced;
-import static de.calamanari.adl.FormatUtils.space;
-import static de.calamanari.adl.sql.SqlFormatConstants.AND;
-import static de.calamanari.adl.sql.SqlFormatConstants.AS;
-import static de.calamanari.adl.sql.SqlFormatConstants.BRACE_CLOSE;
-import static de.calamanari.adl.sql.SqlFormatConstants.BRACE_OPEN;
-import static de.calamanari.adl.sql.SqlFormatConstants.CMP_EQUALS;
-import static de.calamanari.adl.sql.SqlFormatConstants.CMP_GREATER_THAN;
-import static de.calamanari.adl.sql.SqlFormatConstants.CMP_LESS_THAN;
-import static de.calamanari.adl.sql.SqlFormatConstants.CMP_NOT_EQUALS;
-import static de.calamanari.adl.sql.SqlFormatConstants.DISTINCT;
-import static de.calamanari.adl.sql.SqlFormatConstants.FROM;
-import static de.calamanari.adl.sql.SqlFormatConstants.IN;
-import static de.calamanari.adl.sql.SqlFormatConstants.INNER_JOIN;
-import static de.calamanari.adl.sql.SqlFormatConstants.IS_NOT_NULL;
-import static de.calamanari.adl.sql.SqlFormatConstants.IS_NULL;
-import static de.calamanari.adl.sql.SqlFormatConstants.NOT;
-import static de.calamanari.adl.sql.SqlFormatConstants.ON;
-import static de.calamanari.adl.sql.SqlFormatConstants.OR;
-import static de.calamanari.adl.sql.SqlFormatConstants.SELECT;
-import static de.calamanari.adl.sql.SqlFormatConstants.SELF_JOIN_ALIAS;
-import static de.calamanari.adl.sql.SqlFormatConstants.UNION;
-import static de.calamanari.adl.sql.SqlFormatConstants.WHERE;
-import static de.calamanari.adl.sql.SqlFormatUtils.appendSpacedIf;
-import static de.calamanari.adl.sql.cnv.ConversionHint.NO_JOINS_REQUIRED;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +58,33 @@ import de.calamanari.adl.sql.config.DataBinding;
 import de.calamanari.adl.sql.config.DataTableConfig;
 import de.calamanari.adl.sql.config.SqlContainsPolicy;
 import de.calamanari.adl.sql.config.TableMetaInfo;
+
+import static de.calamanari.adl.FormatUtils.appendIndentOrWhitespace;
+import static de.calamanari.adl.FormatUtils.appendSpaced;
+import static de.calamanari.adl.FormatUtils.space;
+import static de.calamanari.adl.sql.SqlFormatConstants.AND;
+import static de.calamanari.adl.sql.SqlFormatConstants.AS;
+import static de.calamanari.adl.sql.SqlFormatConstants.BRACE_CLOSE;
+import static de.calamanari.adl.sql.SqlFormatConstants.BRACE_OPEN;
+import static de.calamanari.adl.sql.SqlFormatConstants.CMP_EQUALS;
+import static de.calamanari.adl.sql.SqlFormatConstants.CMP_GREATER_THAN;
+import static de.calamanari.adl.sql.SqlFormatConstants.CMP_LESS_THAN;
+import static de.calamanari.adl.sql.SqlFormatConstants.CMP_NOT_EQUALS;
+import static de.calamanari.adl.sql.SqlFormatConstants.DISTINCT;
+import static de.calamanari.adl.sql.SqlFormatConstants.FROM;
+import static de.calamanari.adl.sql.SqlFormatConstants.IN;
+import static de.calamanari.adl.sql.SqlFormatConstants.INNER_JOIN;
+import static de.calamanari.adl.sql.SqlFormatConstants.IS_NOT_NULL;
+import static de.calamanari.adl.sql.SqlFormatConstants.IS_NULL;
+import static de.calamanari.adl.sql.SqlFormatConstants.NOT;
+import static de.calamanari.adl.sql.SqlFormatConstants.ON;
+import static de.calamanari.adl.sql.SqlFormatConstants.OR;
+import static de.calamanari.adl.sql.SqlFormatConstants.SELECT;
+import static de.calamanari.adl.sql.SqlFormatConstants.SELF_JOIN_ALIAS;
+import static de.calamanari.adl.sql.SqlFormatConstants.UNION;
+import static de.calamanari.adl.sql.SqlFormatConstants.WHERE;
+import static de.calamanari.adl.sql.SqlFormatUtils.appendSpacedIf;
+import static de.calamanari.adl.sql.cnv.ConversionHint.NO_JOINS_REQUIRED;
 
 /**
  * Base class for creating SQL-converters.

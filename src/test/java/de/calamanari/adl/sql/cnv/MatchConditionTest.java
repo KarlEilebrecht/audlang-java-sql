@@ -19,14 +19,6 @@
 
 package de.calamanari.adl.sql.cnv;
 
-import static de.calamanari.adl.cnv.tps.DefaultAdlType.INTEGER;
-import static de.calamanari.adl.cnv.tps.DefaultAdlType.STRING;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_INTEGER;
-import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_VARCHAR;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -50,6 +42,14 @@ import de.calamanari.adl.sql.config.DefaultSqlContainsPolicy;
 import de.calamanari.adl.sql.config.DummyDataTableConfig;
 import de.calamanari.adl.sql.config.SingleTableConfig;
 import de.calamanari.adl.sql.config.TableMetaInfo;
+
+import static de.calamanari.adl.cnv.tps.DefaultAdlType.INTEGER;
+import static de.calamanari.adl.cnv.tps.DefaultAdlType.STRING;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_INTEGER;
+import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_VARCHAR;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

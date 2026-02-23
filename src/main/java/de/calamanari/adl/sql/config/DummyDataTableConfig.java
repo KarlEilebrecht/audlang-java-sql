@@ -19,9 +19,6 @@
 
 package de.calamanari.adl.sql.config;
 
-import static de.calamanari.adl.sql.config.ConfigUtils.assertContextNotNull;
-import static de.calamanari.adl.sql.config.ConfigUtils.assertValidArgName;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -29,6 +26,9 @@ import de.calamanari.adl.ProcessContext;
 import de.calamanari.adl.cnv.tps.ArgMetaInfo;
 import de.calamanari.adl.cnv.tps.DefaultAdlType;
 import de.calamanari.adl.sql.DefaultAdlSqlType;
+
+import static de.calamanari.adl.sql.config.ConfigUtils.assertContextNotNull;
+import static de.calamanari.adl.sql.config.ConfigUtils.assertValidArgName;
 
 /**
  * This implementation is for testing and debugging, it returns a dummy table name and the argName

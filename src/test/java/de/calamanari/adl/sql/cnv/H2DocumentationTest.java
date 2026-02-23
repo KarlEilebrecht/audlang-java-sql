@@ -19,6 +19,19 @@
 
 package de.calamanari.adl.sql.cnv;
 
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.jupiter.api.Test;
+
+import de.calamanari.adl.sql.config.DataBinding;
+import de.calamanari.adl.sql.config.DataTableConfig;
+import de.calamanari.adl.sql.config.DefaultSqlContainsPolicy;
+import de.calamanari.adl.sql.config.MultiTableConfig;
+import de.calamanari.adl.sql.config.SingleTableConfig;
+
 import static de.calamanari.adl.cnv.tps.DefaultAdlType.BOOL;
 import static de.calamanari.adl.cnv.tps.DefaultAdlType.DATE;
 import static de.calamanari.adl.cnv.tps.DefaultAdlType.DECIMAL;
@@ -34,19 +47,6 @@ import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_TIMESTAMP;
 import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_VARCHAR;
 import static de.calamanari.adl.sql.cnv.H2TestExecutionUtils.assertQueryResult;
 import static de.calamanari.adl.sql.cnv.H2TestExecutionUtils.list;
-
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Test;
-
-import de.calamanari.adl.sql.config.DataBinding;
-import de.calamanari.adl.sql.config.DataTableConfig;
-import de.calamanari.adl.sql.config.DefaultSqlContainsPolicy;
-import de.calamanari.adl.sql.config.MultiTableConfig;
-import de.calamanari.adl.sql.config.SingleTableConfig;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

@@ -19,15 +19,15 @@
 
 package de.calamanari.adl.sql;
 
+import de.calamanari.adl.FormatStyle;
+import de.calamanari.adl.FormatUtils;
+
 import static de.calamanari.adl.FormatUtils.appendIndentOrWhitespace;
 import static de.calamanari.adl.FormatUtils.appendSpaced;
 import static de.calamanari.adl.FormatUtils.space;
 import static de.calamanari.adl.sql.SqlFormatConstants.IS_NOT_NULL;
 import static de.calamanari.adl.sql.SqlFormatConstants.IS_NULL;
 import static de.calamanari.adl.sql.SqlFormatConstants.ORDER_BY;
-
-import de.calamanari.adl.FormatStyle;
-import de.calamanari.adl.FormatUtils;
 
 /**
  * Some additional utilities for formatting SQL

@@ -19,6 +19,30 @@
 
 package de.calamanari.adl.sql;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import de.calamanari.adl.DeepCopyUtils;
+import de.calamanari.adl.cnv.tps.AdlFormattingException;
+import de.calamanari.adl.cnv.tps.AdlType;
+import de.calamanari.adl.cnv.tps.ArgMetaInfo;
+import de.calamanari.adl.cnv.tps.ArgValueFormatter;
+import de.calamanari.adl.cnv.tps.DefaultAdlType;
+import de.calamanari.adl.cnv.tps.DefaultArgValueFormatter;
+import de.calamanari.adl.cnv.tps.NativeTypeCaster;
+import de.calamanari.adl.cnv.tps.PassThroughTypeCaster;
+import de.calamanari.adl.irl.MatchOperator;
+
 import static de.calamanari.adl.cnv.tps.DefaultAdlType.BOOL;
 import static de.calamanari.adl.cnv.tps.DefaultAdlType.DATE;
 import static de.calamanari.adl.cnv.tps.DefaultAdlType.DECIMAL;
@@ -49,30 +73,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Types;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.calamanari.adl.DeepCopyUtils;
-import de.calamanari.adl.cnv.tps.AdlFormattingException;
-import de.calamanari.adl.cnv.tps.AdlType;
-import de.calamanari.adl.cnv.tps.ArgMetaInfo;
-import de.calamanari.adl.cnv.tps.ArgValueFormatter;
-import de.calamanari.adl.cnv.tps.DefaultAdlType;
-import de.calamanari.adl.cnv.tps.DefaultArgValueFormatter;
-import de.calamanari.adl.cnv.tps.NativeTypeCaster;
-import de.calamanari.adl.cnv.tps.PassThroughTypeCaster;
-import de.calamanari.adl.irl.MatchOperator;
 
 /**
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>

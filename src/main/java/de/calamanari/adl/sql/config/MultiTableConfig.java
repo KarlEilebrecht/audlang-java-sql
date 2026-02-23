@@ -19,8 +19,6 @@
 
 package de.calamanari.adl.sql.config;
 
-import static de.calamanari.adl.sql.config.ConfigUtils.assertContextNotNull;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -41,6 +39,8 @@ import de.calamanari.adl.sql.config.ConfigBuilderInterfaces.MultiTableDataColumn
 import de.calamanari.adl.sql.config.ConfigBuilderInterfaces.MultiTableDataColumnStep2;
 import de.calamanari.adl.sql.config.ConfigBuilderInterfaces.MultiTableStep1;
 import de.calamanari.adl.sql.config.ConfigBuilderInterfaces.MultiTableStep2;
+
+import static de.calamanari.adl.sql.config.ConfigUtils.assertContextNotNull;
 
 /**
  * A {@link MultiTableConfig} is composed of {@link SingleTableConfig}s to map argNames <i>uniquely</i> to columns of multiple tables.
