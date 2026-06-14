@@ -650,7 +650,7 @@ public record CoreExpressionStats(Set<Flag> hints, Set<String> argNames, Set<Str
             result.add(neg.argName());
             break;
         case CombinedExpression cmb:
-            cmb.childExpressions().stream().forEach(e -> collectArgNamesInValueMatches(e, filter, negated, result));
+            cmb.childExpressions().forEach(e -> collectArgNamesInValueMatches(e, filter, negated, result));
             break;
         default:
         }

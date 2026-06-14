@@ -51,7 +51,7 @@ import static de.calamanari.adl.sql.SqlFormatConstants.TRUE;
  * 
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>
  */
-@SuppressWarnings("java:S6548")
+@SuppressWarnings({ "java:S6548", "java:S2143" })
 public class DefaultQueryParameterCreator implements QueryParameterCreator {
 
     private static final long serialVersionUID = -1904380668225305221L;

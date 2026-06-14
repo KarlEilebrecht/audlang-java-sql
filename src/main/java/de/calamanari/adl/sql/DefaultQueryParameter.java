@@ -38,6 +38,7 @@ import de.calamanari.adl.irl.MatchOperator;
  * @param operator context information, the operator this parameter is used with, NOT NULL (specify {@link MatchOperator#EQUALS} if you don't know)
  * @author <a href="mailto:Karl.Eilebrecht(a/t)calamanari.de">Karl Eilebrecht</a>
  */
+@SuppressWarnings("java:S2143")
 public record DefaultQueryParameter(String id, AdlSqlType adlSqlType, Serializable value, MatchOperator operator) implements QueryParameter {
 
     /**
