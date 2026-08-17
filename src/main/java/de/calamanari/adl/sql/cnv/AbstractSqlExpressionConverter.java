@@ -1181,6 +1181,7 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
             sb.append("(");
             sb.append(termLeft);
             appendSpaced(sb, CMP_LESS_THAN);
+            assertHavePrimaryColumnCondition(sb, condition, termLeft);
             sb.append(condition.getPrimaryColumnCondition().parameters().get(0).createReference());
             appendSpaced(sb, OR);
             sb.append(termLeft);
@@ -1188,7 +1189,6 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
             sb.append(CMP_GREATER_THAN);
             sb.append(CMP_EQUALS);
             space(sb);
-            assertHavePrimaryColumnCondition(sb, condition, termLeft);
             sb.append(condition.getPrimaryColumnCondition().parameters().get(1).createReference());
             sb.append(")");
         }
@@ -1199,11 +1199,11 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
             sb.append(CMP_GREATER_THAN);
             sb.append(CMP_EQUALS);
             space(sb);
+            assertHavePrimaryColumnCondition(sb, condition, termLeft);
             sb.append(condition.getPrimaryColumnCondition().parameters().get(0).createReference());
             appendSpaced(sb, AND);
             sb.append(termLeft);
             appendSpaced(sb, CMP_LESS_THAN);
-            assertHavePrimaryColumnCondition(sb, condition, termLeft);
             sb.append(condition.getPrimaryColumnCondition().parameters().get(1).createReference());
             sb.append(")");
         }
