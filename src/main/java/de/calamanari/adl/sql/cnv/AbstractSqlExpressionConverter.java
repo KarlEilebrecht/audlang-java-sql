@@ -1120,6 +1120,18 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
     }
 
     /**
+     * Checks whether the primary column condition is present and
+     * 
+     * @param condition
+     */
+    private static void assertHavePrimaryColumnCondition(StringBuilder sb, MatchCondition condition, String termLeft) {
+        if (condition.getPrimaryColumnCondition() == null) {
+            throw new IllegalStateException(
+                    String.format("Unexpected missing primary column condition: sb=%s, condition=%s, String termLeft=%s", sb, condition, termLeft));
+        }
+    }
+
+    /**
      * Appends a (NOT) IN clause based on the given condition
      * 
      * @param sb
@@ -1132,6 +1144,7 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
             appendSpaced(sb, NOT);
         }
         appendSpaced(sb, IN);
+        assertHavePrimaryColumnCondition(sb, condition, termLeft);
         List<QueryParameter> parameters = condition.getPrimaryColumnCondition().parameters();
         sb.append(parameters.stream().map(QueryParameter::createReference).collect(Collectors.joining(", ", "(", ")")));
     }
@@ -1150,6 +1163,7 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
         sb.append(CMP_GREATER_THAN);
         sb.append(CMP_EQUALS);
         space(sb);
+        assertHavePrimaryColumnCondition(sb, condition, termLeft);
         sb.append(condition.getPrimaryColumnCondition().parameters().get(0).createReference());
     }
 
@@ -1174,6 +1188,7 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
             sb.append(CMP_GREATER_THAN);
             sb.append(CMP_EQUALS);
             space(sb);
+            assertHavePrimaryColumnCondition(sb, condition, termLeft);
             sb.append(condition.getPrimaryColumnCondition().parameters().get(1).createReference());
             sb.append(")");
         }
@@ -1188,6 +1203,7 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
             appendSpaced(sb, AND);
             sb.append(termLeft);
             appendSpaced(sb, CMP_LESS_THAN);
+            assertHavePrimaryColumnCondition(sb, condition, termLeft);
             sb.append(condition.getPrimaryColumnCondition().parameters().get(1).createReference());
             sb.append(")");
         }
@@ -1243,6 +1259,7 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
     private void appendEqualsValueMatchCondition(StringBuilder sb, MatchCondition condition, String termLeft) {
         sb.append(termLeft);
         appendSpaced(sb, condition.isNegation() ? CMP_NOT_EQUALS : CMP_EQUALS);
+        assertHavePrimaryColumnCondition(sb, condition, termLeft);
         sb.append(condition.getPrimaryColumnCondition().parameters().get(0).createReference());
     }
 
@@ -1254,6 +1271,7 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
      * @param termLeft
      */
     private void appendContainsMatchCondition(StringBuilder sb, MatchCondition condition, String termLeft) {
+        assertHavePrimaryColumnCondition(sb, condition, termLeft);
         sb.append(dataBinding().sqlContainsPolicy().createInstruction(termLeft, condition.getPrimaryColumnCondition().parameters().get(0).createReference()));
     }
 
@@ -1277,6 +1295,7 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
         default:
             throw new IllegalStateException("Unexpected operator in value match, given: " + condition);
         }
+        assertHavePrimaryColumnCondition(sb, condition, termLeft);
         sb.append(condition.getPrimaryColumnCondition().parameters().get(0).createReference());
     }
 
