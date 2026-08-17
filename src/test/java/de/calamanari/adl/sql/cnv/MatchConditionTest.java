@@ -303,7 +303,7 @@ class MatchConditionTest {
 
         assertNull(refCondition.getPrimaryColumnCondition());
 
-        assertThrows(IllegalStateException.class, () -> refCondition.requirePrimaryColumnCondition());
+        assertThrows(IllegalStateException.class, refCondition::requirePrimaryColumnCondition);
 
     }
 
