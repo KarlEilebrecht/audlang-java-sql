@@ -48,6 +48,7 @@ import static de.calamanari.adl.cnv.tps.DefaultAdlType.STRING;
 import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_INTEGER;
 import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_VARCHAR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 
@@ -288,6 +289,21 @@ class MatchConditionTest {
         List<SimpleExpression> bad = Arrays.asList(red, blue, null);
 
         assertThrows(IllegalArgumentException.class, () -> factory.createInClauseCondition(bad));
+
+    }
+
+    @Test
+    void testRequirePrimaryColumnCondition() {
+        SqlConversionProcessContext ctx = new ResettableScpContext(new DataBinding(DummyDataTableConfig.getInstance(), DefaultSqlContainsPolicy.SQL92),
+                new HashMap<>(), new HashSet<>());
+
+        SimpleExpression refMatch = (SimpleExpression) MatchExpression.of("color", MatchOperator.EQUALS, Operand.of("color2", true));
+
+        MatchCondition refCondition = MatchCondition.createSimpleCondition(refMatch, ctx);
+
+        assertNull(refCondition.getPrimaryColumnCondition());
+
+        assertThrows(IllegalStateException.class, () -> refCondition.requirePrimaryColumnCondition());
 
     }
 

@@ -641,6 +641,20 @@ public record MatchCondition(MatchOperator operator, boolean isNegation, String 
     }
 
     /**
+     * Returns {@link #getPrimaryColumnCondition()}
+     * 
+     * @return the primary value comparison (e.g., <code>color=blue</code>), never null
+     * @throws IllegalStateException if there is no primary column condition (implementation/flow error)
+     */
+    public ColumnCondition requirePrimaryColumnCondition() {
+        ColumnCondition res = getPrimaryColumnCondition();
+        if (res == null) {
+            throw new IllegalStateException("Illegal attempt to obtain primary column condition: " + this);
+        }
+        return res;
+    }
+
+    /**
      * @return type of the main condition
      */
     public ColumnConditionType type() {
