@@ -20,6 +20,8 @@
 package de.calamanari.adl.sql.cnv;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -30,9 +32,14 @@ import de.calamanari.adl.ConversionException;
 import de.calamanari.adl.Flag;
 import de.calamanari.adl.FormatStyle;
 import de.calamanari.adl.cnv.tps.DefaultAdlType;
+import de.calamanari.adl.irl.MatchExpression;
+import de.calamanari.adl.irl.MatchOperator;
+import de.calamanari.adl.irl.Operand;
+import de.calamanari.adl.irl.SimpleExpression;
 import de.calamanari.adl.sql.QueryTemplateWithParameters;
 import de.calamanari.adl.sql.config.DataBinding;
 import de.calamanari.adl.sql.config.DefaultSqlContainsPolicy;
+import de.calamanari.adl.sql.config.DummyDataTableConfig;
 import de.calamanari.adl.sql.config.MultiTableConfig;
 import de.calamanari.adl.sql.config.SingleTableConfig;
 import de.calamanari.adl.sql.config.TableNature;
@@ -52,6 +59,7 @@ import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_INTEGER;
 import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_TIMESTAMP;
 import static de.calamanari.adl.sql.DefaultAdlSqlType.SQL_VARCHAR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -2029,4 +2037,18 @@ class DefaultSqlExpressionConverterTest {
 
     }
 
+    @Test
+    void testAssertPrimaryColumnConditionMandatory() {
+        SqlConversionProcessContext ctx = new ResettableScpContext(new DataBinding(DummyDataTableConfig.getInstance(), DefaultSqlContainsPolicy.SQL92),
+                new HashMap<>(), new HashSet<>());
+
+        SimpleExpression refMatch = (SimpleExpression) MatchExpression.of("color", MatchOperator.EQUALS, Operand.of("color2", true));
+
+        MatchCondition refCondition = MatchCondition.createSimpleCondition(refMatch, ctx);
+
+        assertNull(refCondition.getPrimaryColumnCondition());
+
+        StringBuilder sb = new StringBuilder();
+        assertThrows(IllegalStateException.class, () -> AbstractSqlExpressionConverter.assertHavePrimaryColumnCondition(sb, refCondition, ""));
+    }
 }

@@ -1124,7 +1124,7 @@ public abstract class AbstractSqlExpressionConverter<C extends SqlConversionCont
      * 
      * @param condition
      */
-    private static void assertHavePrimaryColumnCondition(StringBuilder sb, MatchCondition condition, String termLeft) {
+    static void assertHavePrimaryColumnCondition(StringBuilder sb, MatchCondition condition, String termLeft) {
         if (condition.getPrimaryColumnCondition() == null) {
             throw new IllegalStateException(
                     String.format("Unexpected missing primary column condition: sb=%s, condition=%s, String termLeft=%s", sb, condition, termLeft));
