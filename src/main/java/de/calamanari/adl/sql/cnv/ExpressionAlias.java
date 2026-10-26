@@ -160,7 +160,7 @@ public class ExpressionAlias implements Comparable<ExpressionAlias> {
 
     @Override
     public int hashCode() {
-        return expression.hashCode();
+        return name.hashCode();
     }
 
     @Override
