@@ -194,7 +194,7 @@ public record DataColumn(String tableName, String columnName, AdlSqlType columnT
 
         private boolean alwaysKnownFlag = false;
 
-        private List<FilterColumn> filterColumns = new ArrayList<>();
+        private final List<FilterColumn> filterColumns = new ArrayList<>();
 
         private Builder(String tableName) {
             this.tableName = tableName;

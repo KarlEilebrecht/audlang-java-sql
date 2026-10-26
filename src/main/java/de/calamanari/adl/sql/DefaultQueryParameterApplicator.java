@@ -116,8 +116,8 @@ public class DefaultQueryParameterApplicator implements QueryParameterApplicator
 
         }
         catch (SQLException ex) {
-            LOGGER.error(String.format("Unable to set a parameter at a prepared statement, given: adlSqlType=%s, value=%s, stmt=%s, parameterIndex=%s",
-                    parameter.adlSqlType(), parameter.value(), stmt, parameterIndex));
+            LOGGER.error("Unable to set a parameter at a prepared statement, given: adlSqlType={}, value={}, stmt={}, parameterIndex={}",
+                    parameter.adlSqlType(), parameter.value(), stmt, parameterIndex);
             throw ex;
         }
 

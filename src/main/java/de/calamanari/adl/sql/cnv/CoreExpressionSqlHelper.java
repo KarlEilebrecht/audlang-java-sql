@@ -832,7 +832,7 @@ public class CoreExpressionSqlHelper {
      * @param expressions to be sorted in descending order
      */
     public void sortByComplexityDescending(List<CoreExpression> expressions) {
-        Collections.sort(expressions, complexityComparator.reversed().thenComparing(Function.identity()));
+        expressions.sort(complexityComparator.reversed().thenComparing(Function.identity()));
     }
 
     /**

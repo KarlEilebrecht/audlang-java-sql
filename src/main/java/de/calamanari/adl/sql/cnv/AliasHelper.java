@@ -22,6 +22,7 @@ package de.calamanari.adl.sql.cnv;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -343,7 +344,7 @@ public class AliasHelper {
      */
     public List<ExpressionAlias> getOrderedAliasList() {
         List<ExpressionAlias> aliasList = new ArrayList<>(aliasMap.values());
-        Collections.sort(aliasList);
+        aliasList.sort(Comparator.naturalOrder());
         return aliasList;
     }
 

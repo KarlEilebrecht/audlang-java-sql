@@ -408,7 +408,7 @@ public class DefaultQueryParameterCreator implements QueryParameterCreator {
                 return new DefaultQueryParameter(ctx.parameterId, ctx.adlSqlType,
                         new Date(assertInRange(argValue, 0, 253_402_300_799_000L, formattedValue, ctx)), ctx.matchOperator);
             case SQL_DECIMAL, SQL_DOUBLE, SQL_REAL:
-                return new DefaultQueryParameter(ctx.parameterId, ctx.adlSqlType, Double.valueOf(argValue), ctx.matchOperator);
+                return new DefaultQueryParameter(ctx.parameterId, ctx.adlSqlType, (double) argValue, ctx.matchOperator);
             case SQL_NUMERIC:
                 return new DefaultQueryParameter(ctx.parameterId, ctx.adlSqlType, BigDecimal.valueOf(argValue).setScale(7, RoundingMode.HALF_UP),
                         ctx.matchOperator);

@@ -27,7 +27,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -311,7 +311,7 @@ public class H2TestExecutionUtils {
         assertEquals(expectedIds.size(), selectCount(dataBinding, expression, globalVariables, flags));
 
         List<Integer> res2 = selectIds(dataBinding, expression, globalVariables, flags);
-        Collections.sort(res2);
+        res2.sort(Comparator.naturalOrder());
         assertEquals(expectedIds, res2);
 
     }

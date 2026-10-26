@@ -211,7 +211,7 @@ public class DefaultSqlExpressionConverter extends AbstractSqlExpressionConverte
         addMainWithClauseElement(withClauseElements);
         addExtraAliasWithClauseElements(withClauseElements);
 
-        Collections.sort(withClauseElements);
+        withClauseElements.sort(Comparator.naturalOrder());
 
         if (!withClauseElements.isEmpty()) {
 
@@ -727,7 +727,7 @@ public class DefaultSqlExpressionConverter extends AbstractSqlExpressionConverte
         }
 
         // print all inner joins before the left outer joins
-        Collections.sort(joinElements);
+        joinElements.sort(Comparator.naturalOrder());
         for (String joinElement : joinElements) {
             if (!style().isMultiLine()) {
                 space(sb);
